@@ -1,0 +1,1592 @@
+{
+  "dense_only": {
+    "method": "dense_only",
+    "num_queries": 25,
+    "MRR": 0.84,
+    "Recall@5": 0.8866666666666667,
+    "Recall@10": 0.9,
+    "Hit@1": 0.76,
+    "Hit@3": 0.92,
+    "avg_latency_ms": 455.0957679748535,
+    "per_query": [
+      {
+        "id": 1,
+        "query": "How can we let LLMs use their own retrieval rankings as additional input signal?",
+        "relevant": [
+          "2406.13249"
+        ],
+        "retrieved_top10": [
+          "2406.13249",
+          "2602.23368",
+          "2502.00306",
+          "2509.13978",
+          "2503.16581",
+          "2510.22344",
+          "2502.01113"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 1958.1634998321533
+      },
+      {
+        "id": 2,
+        "query": "Can a single pretrained graph model be used across multiple knowledge corpora for retrieval?",
+        "relevant": [
+          "2502.01113"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2602.23368",
+          "2405.15436",
+          "2406.13249",
+          "2203.00964"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 310.85729598999023
+      },
+      {
+        "id": 3,
+        "query": "What happens when language models iteratively refine their own retrieval queries?",
+        "relevant": [
+          "2510.22344"
+        ],
+        "retrieved_top10": [
+          "2602.23368",
+          "2510.22344",
+          "2502.01113",
+          "2406.13249",
+          "2405.15436",
+          "2509.23471",
+          "2503.16581"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 305.2864074707031
+      },
+      {
+        "id": 4,
+        "query": "Can autonomous AI systems exploit web application vulnerabilities without human guidance?",
+        "relevant": [
+          "2402.06664"
+        ],
+        "retrieved_top10": [
+          "2402.06664",
+          "2502.00306",
+          "2503.11733",
+          "2407.01231"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 401.09729766845703
+      },
+      {
+        "id": 5,
+        "query": "How well can language model agents predict international relations events?",
+        "relevant": [
+          "2407.01231"
+        ],
+        "retrieved_top10": [
+          "2407.01231",
+          "2503.11733",
+          "2510.08255",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 360.18896102905273
+      },
+      {
+        "id": 6,
+        "query": "Why might someone build a vector store from scratch in a memory-safe systems language?",
+        "relevant": [
+          "2303.16780"
+        ],
+        "retrieved_top10": [
+          "2509.23471",
+          "2401.07119",
+          "2602.11443",
+          "2601.11618",
+          "2510.22344",
+          "2602.23368"
+        ],
+        "rr": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 361.4470958709717
+      },
+      {
+        "id": 7,
+        "query": "How do you efficiently isolate vector indices when many customers share infrastructure?",
+        "relevant": [
+          "2401.07119"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 418.292760848999
+      },
+      {
+        "id": 8,
+        "query": "How can complex business logic with thousands of rules be encoded as a graph for explainable automation?",
+        "relevant": [
+          "2009.06103"
+        ],
+        "retrieved_top10": [
+          "2511.11017",
+          "2009.06103",
+          "2511.06455",
+          "2210.08119",
+          "2601.14112",
+          "2510.22344",
+          "2407.01231",
+          "2502.01113"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 400.01821517944336
+      },
+      {
+        "id": 9,
+        "query": "How can agents anticipate and influence the future strategies of other agents?",
+        "relevant": [
+          "2510.08255"
+        ],
+        "retrieved_top10": [
+          "2510.08255",
+          "2505.17648",
+          "2503.11733",
+          "2407.01231"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 372.64037132263184
+      },
+      {
+        "id": 10,
+        "query": "Is dense vector retrieval actually necessary or can simpler methods match it?",
+        "relevant": [
+          "2602.23368"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2602.11443",
+          "2510.22344",
+          "2401.07119",
+          "2509.23471",
+          "2406.13249"
+        ],
+        "rr": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 450.86097717285156
+      },
+      {
+        "id": 11,
+        "query": "Can attackers determine whether a specific document was used to build a retrieval system?",
+        "relevant": [
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2502.01113",
+          "2402.06664"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 409.26575660705566
+      },
+      {
+        "id": 12,
+        "query": "Can virtual economic agents replicate the way humans form beliefs about inflation and growth?",
+        "relevant": [
+          "2505.17648"
+        ],
+        "retrieved_top10": [
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 399.96957778930664
+      },
+      {
+        "id": 13,
+        "query": "How can reservoir computing principles be combined with attention mechanisms?",
+        "relevant": [
+          "2507.02917"
+        ],
+        "retrieved_top10": [
+          "2507.02917",
+          "2601.11618",
+          "2601.14112",
+          "2605.03110",
+          "2604.10791",
+          "2602.17526",
+          "2602.11443",
+          "2510.08255"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 415.1301383972168
+      },
+      {
+        "id": 14,
+        "query": "How can we skip computing attention for redundant tokens to speed up inference?",
+        "relevant": [
+          "2605.03110"
+        ],
+        "retrieved_top10": [
+          "2602.17526",
+          "2605.03110",
+          "2507.02917",
+          "2601.14112",
+          "2604.10791",
+          "2601.11618",
+          "2406.13249"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 408.6015224456787
+      },
+      {
+        "id": 15,
+        "query": "How do you swap out the embedding model in a vector database without re-indexing everything offline?",
+        "relevant": [
+          "2509.23471"
+        ],
+        "retrieved_top10": [
+          "2509.23471",
+          "2401.07119",
+          "2602.11443",
+          "2203.00964"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 407.23443031311035
+      },
+      {
+        "id": 16,
+        "query": "What are different ways AI systems can automatically build knowledge graphs from existing data?",
+        "relevant": [
+          "2203.00964",
+          "2511.06455",
+          "2511.11017"
+        ],
+        "retrieved_top10": [
+          "2511.11017",
+          "2511.06455",
+          "2502.01113",
+          "2405.15436",
+          "2407.01231",
+          "2210.08119",
+          "2203.00964"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.6666666666666666,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 415.29059410095215
+      },
+      {
+        "id": 17,
+        "query": "What attacks and vulnerabilities affect retrieval augmented generation systems?",
+        "relevant": [
+          "2402.06664",
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2406.13249",
+          "2503.16581",
+          "2502.01113",
+          "2602.23368"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.5,
+        "recall@10": 0.5,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 411.13853454589844
+      },
+      {
+        "id": 18,
+        "query": "How are graph structures used to enhance retrieval in language model pipelines?",
+        "relevant": [
+          "2502.01113",
+          "2405.15436"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2602.23368",
+          "2510.22344",
+          "2405.15436",
+          "2303.16780"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 407.0262908935547
+      },
+      {
+        "id": 19,
+        "query": "What are recent architectural changes proposed to make attention layers faster or more interpretable?",
+        "relevant": [
+          "2605.03110",
+          "2602.17526",
+          "2601.11618",
+          "2604.10791",
+          "2601.14112"
+        ],
+        "retrieved_top10": [
+          "2602.17526",
+          "2601.14112",
+          "2605.03110",
+          "2601.11618",
+          "2604.10791",
+          "2507.02917"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 413.179874420166
+      },
+      {
+        "id": 20,
+        "query": "How are LLM agents being applied to teaching and educational settings?",
+        "relevant": [
+          "2503.11733"
+        ],
+        "retrieved_top10": [
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 416.3939952850342
+      },
+      {
+        "id": 21,
+        "query": "Can vector search be combined with filters on metadata efficiently?",
+        "relevant": [
+          "2602.11443"
+        ],
+        "retrieved_top10": [
+          "2602.11443",
+          "2401.07119"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 395.9677219390869
+      },
+      {
+        "id": 22,
+        "query": "How is religious or scriptural text best handled by RAG systems?",
+        "relevant": [
+          "2503.16581"
+        ],
+        "retrieved_top10": [
+          "2503.16581",
+          "2510.22344",
+          "2602.23368",
+          "2502.00306",
+          "2405.15436"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 343.30153465270996
+      },
+      {
+        "id": 23,
+        "query": "What patterns help track AI agent decision histories for compliance or debugging?",
+        "relevant": [
+          "2509.13978"
+        ],
+        "retrieved_top10": [
+          "2407.01231",
+          "2509.13978",
+          "2602.23368",
+          "2510.22344",
+          "2505.17648"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 378.2005310058594
+      },
+      {
+        "id": 24,
+        "query": "Can NLP automate the writing of literature review sections in scientific papers?",
+        "relevant": [
+          "2411.18583"
+        ],
+        "retrieved_top10": [
+          "2411.18583",
+          "2602.23368",
+          "2503.11733",
+          "2510.22344",
+          "2601.14112",
+          "2303.16780"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 404.0026664733887
+      },
+      {
+        "id": 25,
+        "query": "What sampling strategies improve training efficiency for knowledge graph embeddings?",
+        "relevant": [
+          "2209.12801"
+        ],
+        "retrieved_top10": [
+          "2209.12801",
+          "2502.01113",
+          "2511.11017",
+          "2203.00964",
+          "2405.15436"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 413.83814811706543
+      }
+    ]
+  },
+  "hybrid": {
+    "method": "hybrid",
+    "num_queries": 25,
+    "MRR": 0.8933333333333333,
+    "Recall@5": 0.9,
+    "Recall@10": 1.0,
+    "Hit@1": 0.84,
+    "Hit@3": 0.92,
+    "avg_latency_ms": 597.939338684082,
+    "per_query": [
+      {
+        "id": 1,
+        "query": "How can we let LLMs use their own retrieval rankings as additional input signal?",
+        "relevant": [
+          "2406.13249"
+        ],
+        "retrieved_top10": [
+          "2406.13249",
+          "2502.00306",
+          "2602.23368",
+          "2502.01113",
+          "2509.13978",
+          "2510.22344",
+          "2503.16581"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 534.477949142456
+      },
+      {
+        "id": 2,
+        "query": "Can a single pretrained graph model be used across multiple knowledge corpora for retrieval?",
+        "relevant": [
+          "2502.01113"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2511.06455",
+          "2602.23368",
+          "2405.15436",
+          "2509.13978"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 521.2504863739014
+      },
+      {
+        "id": 3,
+        "query": "What happens when language models iteratively refine their own retrieval queries?",
+        "relevant": [
+          "2510.22344"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2510.22344",
+          "2602.23368",
+          "2507.02917",
+          "2502.01113",
+          "2405.15436",
+          "2509.13978",
+          "2406.13249"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 512.6185417175293
+      },
+      {
+        "id": 4,
+        "query": "Can autonomous AI systems exploit web application vulnerabilities without human guidance?",
+        "relevant": [
+          "2402.06664"
+        ],
+        "retrieved_top10": [
+          "2402.06664",
+          "2502.00306",
+          "2503.11733",
+          "2210.08119",
+          "2509.13978"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 594.8967933654785
+      },
+      {
+        "id": 5,
+        "query": "How well can language model agents predict international relations events?",
+        "relevant": [
+          "2407.01231"
+        ],
+        "retrieved_top10": [
+          "2407.01231",
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 596.3621139526367
+      },
+      {
+        "id": 6,
+        "query": "Why might someone build a vector store from scratch in a memory-safe systems language?",
+        "relevant": [
+          "2303.16780"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443",
+          "2509.23471",
+          "2509.13978",
+          "2511.06455",
+          "2303.16780"
+        ],
+        "rr": 0.16666666666666666,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 1320.162057876587
+      },
+      {
+        "id": 7,
+        "query": "How do you efficiently isolate vector indices when many customers share infrastructure?",
+        "relevant": [
+          "2401.07119"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443",
+          "2009.06103",
+          "2507.02917",
+          "2601.14112",
+          "2510.22344",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 1116.8265342712402
+      },
+      {
+        "id": 8,
+        "query": "How can complex business logic with thousands of rules be encoded as a graph for explainable automation?",
+        "relevant": [
+          "2009.06103"
+        ],
+        "retrieved_top10": [
+          "2009.06103",
+          "2210.08119",
+          "2511.11017",
+          "2511.06455",
+          "2405.15436",
+          "2601.14112",
+          "2203.00964",
+          "2509.13978"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 529.1719436645508
+      },
+      {
+        "id": 9,
+        "query": "How can agents anticipate and influence the future strategies of other agents?",
+        "relevant": [
+          "2510.08255"
+        ],
+        "retrieved_top10": [
+          "2510.08255",
+          "2407.01231",
+          "2505.17648",
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 511.69514656066895
+      },
+      {
+        "id": 10,
+        "query": "Is dense vector retrieval actually necessary or can simpler methods match it?",
+        "relevant": [
+          "2602.23368"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2510.22344",
+          "2602.11443",
+          "2401.07119",
+          "2406.13249",
+          "2602.23368",
+          "2509.23471",
+          "2502.00306"
+        ],
+        "rr": 0.16666666666666666,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 496.1123466491699
+      },
+      {
+        "id": 11,
+        "query": "Can attackers determine whether a specific document was used to build a retrieval system?",
+        "relevant": [
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2502.01113",
+          "2510.22344",
+          "2402.06664",
+          "2602.23368"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 516.0195827484131
+      },
+      {
+        "id": 12,
+        "query": "Can virtual economic agents replicate the way humans form beliefs about inflation and growth?",
+        "relevant": [
+          "2505.17648"
+        ],
+        "retrieved_top10": [
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 391.4766311645508
+      },
+      {
+        "id": 13,
+        "query": "How can reservoir computing principles be combined with attention mechanisms?",
+        "relevant": [
+          "2507.02917"
+        ],
+        "retrieved_top10": [
+          "2507.02917",
+          "2601.14112",
+          "2601.11618",
+          "2605.03110",
+          "2604.10791"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 449.235200881958
+      },
+      {
+        "id": 14,
+        "query": "How can we skip computing attention for redundant tokens to speed up inference?",
+        "relevant": [
+          "2605.03110"
+        ],
+        "retrieved_top10": [
+          "2605.03110",
+          "2604.10791",
+          "2601.14112",
+          "2602.17526",
+          "2507.02917",
+          "2406.13249"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 407.30762481689453
+      },
+      {
+        "id": 15,
+        "query": "How do you swap out the embedding model in a vector database without re-indexing everything offline?",
+        "relevant": [
+          "2509.23471"
+        ],
+        "retrieved_top10": [
+          "2509.23471",
+          "2401.07119",
+          "2602.11443",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 421.09131813049316
+      },
+      {
+        "id": 16,
+        "query": "What are different ways AI systems can automatically build knowledge graphs from existing data?",
+        "relevant": [
+          "2203.00964",
+          "2511.06455",
+          "2511.11017"
+        ],
+        "retrieved_top10": [
+          "2511.06455",
+          "2407.01231",
+          "2210.08119",
+          "2511.11017",
+          "2203.00964",
+          "2509.13978",
+          "2502.01113",
+          "2009.06103",
+          "2502.00306",
+          "2405.15436"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 419.2845821380615
+      },
+      {
+        "id": 17,
+        "query": "What attacks and vulnerabilities affect retrieval augmented generation systems?",
+        "relevant": [
+          "2402.06664",
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2502.01113",
+          "2602.23368",
+          "2406.13249",
+          "2503.16581",
+          "2402.06664"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.5,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 568.7685012817383
+      },
+      {
+        "id": 18,
+        "query": "How are graph structures used to enhance retrieval in language model pipelines?",
+        "relevant": [
+          "2502.01113",
+          "2405.15436"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2602.23368",
+          "2210.08119",
+          "2509.13978",
+          "2405.15436",
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 518.6886787414551
+      },
+      {
+        "id": 19,
+        "query": "What are recent architectural changes proposed to make attention layers faster or more interpretable?",
+        "relevant": [
+          "2605.03110",
+          "2602.17526",
+          "2601.11618",
+          "2604.10791",
+          "2601.14112"
+        ],
+        "retrieved_top10": [
+          "2604.10791",
+          "2601.14112",
+          "2601.11618",
+          "2602.17526",
+          "2605.03110",
+          "2203.00964",
+          "2507.02917",
+          "2502.01113"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 768.7761783599854
+      },
+      {
+        "id": 20,
+        "query": "How are LLM agents being applied to teaching and educational settings?",
+        "relevant": [
+          "2503.11733"
+        ],
+        "retrieved_top10": [
+          "2503.11733",
+          "2402.06664",
+          "2510.08255",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 493.85523796081543
+      },
+      {
+        "id": 21,
+        "query": "Can vector search be combined with filters on metadata efficiently?",
+        "relevant": [
+          "2602.11443"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 825.6173133850098
+      },
+      {
+        "id": 22,
+        "query": "How is religious or scriptural text best handled by RAG systems?",
+        "relevant": [
+          "2503.16581"
+        ],
+        "retrieved_top10": [
+          "2503.16581",
+          "2602.23368",
+          "2502.00306",
+          "2405.15436",
+          "2502.01113",
+          "2510.22344",
+          "2509.13978"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 870.5871105194092
+      },
+      {
+        "id": 23,
+        "query": "What patterns help track AI agent decision histories for compliance or debugging?",
+        "relevant": [
+          "2509.13978"
+        ],
+        "retrieved_top10": [
+          "2509.13978",
+          "2602.23368",
+          "2407.01231",
+          "2503.11733",
+          "2510.22344",
+          "2601.11618",
+          "2009.06103"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 707.6497077941895
+      },
+      {
+        "id": 24,
+        "query": "Can NLP automate the writing of literature review sections in scientific papers?",
+        "relevant": [
+          "2411.18583"
+        ],
+        "retrieved_top10": [
+          "2411.18583",
+          "2503.11733",
+          "2602.23368",
+          "2510.22344",
+          "2502.01113"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 366.8031692504883
+      },
+      {
+        "id": 25,
+        "query": "What sampling strategies improve training efficiency for knowledge graph embeddings?",
+        "relevant": [
+          "2209.12801"
+        ],
+        "retrieved_top10": [
+          "2209.12801",
+          "2502.01113",
+          "2203.00964",
+          "2210.08119",
+          "2511.11017"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 489.7487163543701
+      }
+    ]
+  },
+  "hybrid_reranked": {
+    "method": "hybrid_reranked",
+    "num_queries": 25,
+    "MRR": 0.8466666666666667,
+    "Recall@5": 0.8786666666666666,
+    "Recall@10": 1.0,
+    "Hit@1": 0.76,
+    "Hit@3": 0.92,
+    "avg_latency_ms": 2703.703508377075,
+    "per_query": [
+      {
+        "id": 1,
+        "query": "How can we let LLMs use their own retrieval rankings as additional input signal?",
+        "relevant": [
+          "2406.13249"
+        ],
+        "retrieved_top10": [
+          "2406.13249",
+          "2602.23368",
+          "2510.22344",
+          "2502.00306",
+          "2509.13978",
+          "2502.01113",
+          "2503.16581"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2282.8028202056885
+      },
+      {
+        "id": 2,
+        "query": "Can a single pretrained graph model be used across multiple knowledge corpora for retrieval?",
+        "relevant": [
+          "2502.01113"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2511.06455",
+          "2405.15436",
+          "2602.23368",
+          "2509.13978"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2450.014114379883
+      },
+      {
+        "id": 3,
+        "query": "What happens when language models iteratively refine their own retrieval queries?",
+        "relevant": [
+          "2510.22344"
+        ],
+        "retrieved_top10": [
+          "2510.22344",
+          "2405.15436",
+          "2502.01113",
+          "2502.00306",
+          "2509.13978",
+          "2602.23368",
+          "2507.02917",
+          "2406.13249"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2967.134475708008
+      },
+      {
+        "id": 4,
+        "query": "Can autonomous AI systems exploit web application vulnerabilities without human guidance?",
+        "relevant": [
+          "2402.06664"
+        ],
+        "retrieved_top10": [
+          "2402.06664",
+          "2503.11733",
+          "2509.13978",
+          "2210.08119",
+          "2502.00306"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2477.4956703186035
+      },
+      {
+        "id": 5,
+        "query": "How well can language model agents predict international relations events?",
+        "relevant": [
+          "2407.01231"
+        ],
+        "retrieved_top10": [
+          "2407.01231",
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2524.048328399658
+      },
+      {
+        "id": 6,
+        "query": "Why might someone build a vector store from scratch in a memory-safe systems language?",
+        "relevant": [
+          "2303.16780"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2511.06455",
+          "2509.23471",
+          "2602.11443",
+          "2509.13978",
+          "2303.16780"
+        ],
+        "rr": 0.16666666666666666,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 2535.313606262207
+      },
+      {
+        "id": 7,
+        "query": "How do you efficiently isolate vector indices when many customers share infrastructure?",
+        "relevant": [
+          "2401.07119"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443",
+          "2507.02917",
+          "2510.22344",
+          "2009.06103",
+          "2601.14112",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2471.1544513702393
+      },
+      {
+        "id": 8,
+        "query": "How can complex business logic with thousands of rules be encoded as a graph for explainable automation?",
+        "relevant": [
+          "2009.06103"
+        ],
+        "retrieved_top10": [
+          "2009.06103",
+          "2210.08119",
+          "2511.11017",
+          "2511.06455",
+          "2509.13978",
+          "2405.15436",
+          "2203.00964",
+          "2601.14112"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2384.5784664154053
+      },
+      {
+        "id": 9,
+        "query": "How can agents anticipate and influence the future strategies of other agents?",
+        "relevant": [
+          "2510.08255"
+        ],
+        "retrieved_top10": [
+          "2510.08255",
+          "2503.11733",
+          "2407.01231",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2339.1387462615967
+      },
+      {
+        "id": 10,
+        "query": "Is dense vector retrieval actually necessary or can simpler methods match it?",
+        "relevant": [
+          "2602.23368"
+        ],
+        "retrieved_top10": [
+          "2510.22344",
+          "2502.01113",
+          "2602.11443",
+          "2401.07119",
+          "2406.13249",
+          "2602.23368",
+          "2509.23471",
+          "2502.00306"
+        ],
+        "rr": 0.16666666666666666,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 0.0,
+        "latency_ms": 2640.1679515838623
+      },
+      {
+        "id": 11,
+        "query": "Can attackers determine whether a specific document was used to build a retrieval system?",
+        "relevant": [
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2502.01113",
+          "2602.23368",
+          "2510.22344",
+          "2402.06664"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2625.1590251922607
+      },
+      {
+        "id": 12,
+        "query": "Can virtual economic agents replicate the way humans form beliefs about inflation and growth?",
+        "relevant": [
+          "2505.17648"
+        ],
+        "retrieved_top10": [
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2835.9694480895996
+      },
+      {
+        "id": 13,
+        "query": "How can reservoir computing principles be combined with attention mechanisms?",
+        "relevant": [
+          "2507.02917"
+        ],
+        "retrieved_top10": [
+          "2507.02917",
+          "2601.14112",
+          "2604.10791",
+          "2605.03110",
+          "2601.11618"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2878.082036972046
+      },
+      {
+        "id": 14,
+        "query": "How can we skip computing attention for redundant tokens to speed up inference?",
+        "relevant": [
+          "2605.03110"
+        ],
+        "retrieved_top10": [
+          "2605.03110",
+          "2602.17526",
+          "2406.13249",
+          "2604.10791",
+          "2507.02917",
+          "2601.14112"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2860.154151916504
+      },
+      {
+        "id": 15,
+        "query": "How do you swap out the embedding model in a vector database without re-indexing everything offline?",
+        "relevant": [
+          "2509.23471"
+        ],
+        "retrieved_top10": [
+          "2509.23471",
+          "2401.07119",
+          "2602.11443",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2926.729679107666
+      },
+      {
+        "id": 16,
+        "query": "What are different ways AI systems can automatically build knowledge graphs from existing data?",
+        "relevant": [
+          "2203.00964",
+          "2511.06455",
+          "2511.11017"
+        ],
+        "retrieved_top10": [
+          "2511.11017",
+          "2511.06455",
+          "2405.15436",
+          "2502.01113",
+          "2009.06103",
+          "2407.01231",
+          "2203.00964",
+          "2210.08119",
+          "2509.13978",
+          "2502.00306"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.6666666666666666,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2782.3867797851562
+      },
+      {
+        "id": 17,
+        "query": "What attacks and vulnerabilities affect retrieval augmented generation systems?",
+        "relevant": [
+          "2402.06664",
+          "2502.00306"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2503.16581",
+          "2406.13249",
+          "2502.01113",
+          "2602.23368",
+          "2402.06664"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.5,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2791.858911514282
+      },
+      {
+        "id": 18,
+        "query": "How are graph structures used to enhance retrieval in language model pipelines?",
+        "relevant": [
+          "2502.01113",
+          "2405.15436"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2405.15436",
+          "2210.08119",
+          "2602.23368",
+          "2509.13978",
+          "2503.11733"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2702.2223472595215
+      },
+      {
+        "id": 19,
+        "query": "What are recent architectural changes proposed to make attention layers faster or more interpretable?",
+        "relevant": [
+          "2605.03110",
+          "2602.17526",
+          "2601.11618",
+          "2604.10791",
+          "2601.14112"
+        ],
+        "retrieved_top10": [
+          "2604.10791",
+          "2601.14112",
+          "2605.03110",
+          "2601.11618",
+          "2507.02917",
+          "2602.17526",
+          "2203.00964",
+          "2502.01113"
+        ],
+        "rr": 1.0,
+        "recall@5": 0.8,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2778.0566215515137
+      },
+      {
+        "id": 20,
+        "query": "How are LLM agents being applied to teaching and educational settings?",
+        "relevant": [
+          "2503.11733"
+        ],
+        "retrieved_top10": [
+          "2503.11733",
+          "2510.08255",
+          "2402.06664",
+          "2505.17648"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2907.175302505493
+      },
+      {
+        "id": 21,
+        "query": "Can vector search be combined with filters on metadata efficiently?",
+        "relevant": [
+          "2602.11443"
+        ],
+        "retrieved_top10": [
+          "2401.07119",
+          "2602.11443"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 2889.667510986328
+      },
+      {
+        "id": 22,
+        "query": "How is religious or scriptural text best handled by RAG systems?",
+        "relevant": [
+          "2503.16581"
+        ],
+        "retrieved_top10": [
+          "2502.00306",
+          "2503.16581",
+          "2602.23368",
+          "2510.22344",
+          "2502.01113",
+          "2405.15436",
+          "2509.13978"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 2776.824712753296
+      },
+      {
+        "id": 23,
+        "query": "What patterns help track AI agent decision histories for compliance or debugging?",
+        "relevant": [
+          "2509.13978"
+        ],
+        "retrieved_top10": [
+          "2503.11733",
+          "2602.23368",
+          "2509.13978",
+          "2407.01231",
+          "2009.06103",
+          "2510.22344",
+          "2601.11618"
+        ],
+        "rr": 0.3333333333333333,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 2877.0763874053955
+      },
+      {
+        "id": 24,
+        "query": "Can NLP automate the writing of literature review sections in scientific papers?",
+        "relevant": [
+          "2411.18583"
+        ],
+        "retrieved_top10": [
+          "2411.18583",
+          "2503.11733",
+          "2510.22344",
+          "2502.01113",
+          "2602.23368"
+        ],
+        "rr": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "latency_ms": 2816.3976669311523
+      },
+      {
+        "id": 25,
+        "query": "What sampling strategies improve training efficiency for knowledge graph embeddings?",
+        "relevant": [
+          "2209.12801"
+        ],
+        "retrieved_top10": [
+          "2502.01113",
+          "2209.12801",
+          "2203.00964",
+          "2511.11017",
+          "2210.08119"
+        ],
+        "rr": 0.5,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "hit@1": 0.0,
+        "hit@3": 1.0,
+        "latency_ms": 3072.9784965515137
+      }
+    ]
+  }
+}

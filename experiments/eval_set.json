@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "query": "How can we let LLMs use their own retrieval rankings as additional input signal?",
+    "relevant_papers": ["2406.13249"],
+    "category": "paraphrased",
+    "notes": "R2AG paper, no name mentioned"
+  },
+  {
+    "id": 2,
+    "query": "Can a single pretrained graph model be used across multiple knowledge corpora for retrieval?",
+    "relevant_papers": ["2502.01113"],
+    "category": "paraphrased",
+    "notes": "GFM-RAG"
+  },
+  {
+    "id": 3,
+    "query": "What happens when language models iteratively refine their own retrieval queries?",
+    "relevant_papers": ["2510.22344"],
+    "category": "paraphrased",
+    "notes": "FAIR-RAG"
+  },
+  {
+    "id": 4,
+    "query": "Can autonomous AI systems exploit web application vulnerabilities without human guidance?",
+    "relevant_papers": ["2402.06664"],
+    "category": "paraphrased",
+    "notes": "LLM agents hacking websites"
+  },
+  {
+    "id": 5,
+    "query": "How well can language model agents predict international relations events?",
+    "relevant_papers": ["2407.01231"],
+    "category": "paraphrased",
+    "notes": "MIRAI - event forecasting"
+  },
+  {
+    "id": 6,
+    "query": "Why might someone build a vector store from scratch in a memory-safe systems language?",
+    "relevant_papers": ["2303.16780"],
+    "category": "paraphrased",
+    "notes": "Thistle - Rust vector DB"
+  },
+  {
+    "id": 7,
+    "query": "How do you efficiently isolate vector indices when many customers share infrastructure?",
+    "relevant_papers": ["2401.07119"],
+    "category": "paraphrased",
+    "notes": "Curator multi-tenant"
+  },
+  {
+    "id": 8,
+    "query": "How can complex business logic with thousands of rules be encoded as a graph for explainable automation?",
+    "relevant_papers": ["2009.06103"],
+    "category": "paraphrased",
+    "notes": "Tax KG / TurboTax"
+  },
+  {
+    "id": 9,
+    "query": "How can agents anticipate and influence the future strategies of other agents?",
+    "relevant_papers": ["2510.08255"],
+    "category": "paraphrased",
+    "notes": "Opponent shaping"
+  },
+  {
+    "id": 10,
+    "query": "Is dense vector retrieval actually necessary or can simpler methods match it?",
+    "relevant_papers": ["2602.23368"],
+    "category": "paraphrased",
+    "notes": "Keyword search is all you need"
+  },
+  {
+    "id": 11,
+    "query": "Can attackers determine whether a specific document was used to build a retrieval system?",
+    "relevant_papers": ["2502.00306"],
+    "category": "paraphrased",
+    "notes": "Membership inference for RAG"
+  },
+  {
+    "id": 12,
+    "query": "Can virtual economic agents replicate the way humans form beliefs about inflation and growth?",
+    "relevant_papers": ["2505.17648"],
+    "category": "paraphrased",
+    "notes": "Macroeconomic expectations"
+  },
+  {
+    "id": 13,
+    "query": "How can reservoir computing principles be combined with attention mechanisms?",
+    "relevant_papers": ["2507.02917"],
+    "category": "paraphrased",
+    "notes": "Echo State Transformer"
+  },
+  {
+    "id": 14,
+    "query": "How can we skip computing attention for redundant tokens to speed up inference?",
+    "relevant_papers": ["2605.03110"],
+    "category": "paraphrased",
+    "notes": "Cascade Token Selection"
+  },
+  {
+    "id": 15,
+    "query": "How do you swap out the embedding model in a vector database without re-indexing everything offline?",
+    "relevant_papers": ["2509.23471"],
+    "category": "paraphrased",
+    "notes": "Drift-Adapter"
+  },
+  {
+    "id": 16,
+    "query": "What are different ways AI systems can automatically build knowledge graphs from existing data?",
+    "relevant_papers": ["2511.06455", "2511.11017", "2203.00964"],
+    "category": "cross_paper",
+    "notes": "Multiple KG construction papers"
+  },
+  {
+    "id": 17,
+    "query": "What attacks and vulnerabilities affect retrieval augmented generation systems?",
+    "relevant_papers": ["2502.00306", "2402.06664"],
+    "category": "cross_paper",
+    "notes": "Security across RAG and LLM-agent papers"
+  },
+  {
+    "id": 18,
+    "query": "How are graph structures used to enhance retrieval in language model pipelines?",
+    "relevant_papers": ["2502.01113", "2405.15436"],
+    "category": "cross_paper",
+    "notes": "GFM-RAG and HybridContextRAG (graph + vector)"
+  },
+  {
+    "id": 19,
+    "query": "What are recent architectural changes proposed to make attention layers faster or more interpretable?",
+    "relevant_papers": ["2605.03110", "2604.10791", "2601.11618", "2601.14112", "2602.17526"],
+    "category": "cross_paper",
+    "notes": "All transformer attention modification papers"
+  },
+  {
+    "id": 20,
+    "query": "How are LLM agents being applied to teaching and educational settings?",
+    "relevant_papers": ["2503.11733"],
+    "category": "paraphrased",
+    "notes": "LLM agents for education"
+  },
+  {
+    "id": 21,
+    "query": "Can vector search be combined with filters on metadata efficiently?",
+    "relevant_papers": ["2602.11443"],
+    "category": "paraphrased",
+    "notes": "Filtered ANN search"
+  },
+  {
+    "id": 22,
+    "query": "How is religious or scriptural text best handled by RAG systems?",
+    "relevant_papers": ["2503.16581"],
+    "category": "paraphrased",
+    "notes": "Quranic studies RAG"
+  },
+  {
+    "id": 23,
+    "query": "What patterns help track AI agent decision histories for compliance or debugging?",
+    "relevant_papers": ["2509.13978"],
+    "category": "paraphrased",
+    "notes": "Workflow provenance for LLM agents"
+  },
+  {
+    "id": 24,
+    "query": "Can NLP automate the writing of literature review sections in scientific papers?",
+    "relevant_papers": ["2411.18583"],
+    "category": "paraphrased",
+    "notes": "Automated literature review"
+  },
+  {
+    "id": 25,
+    "query": "What sampling strategies improve training efficiency for knowledge graph embeddings?",
+    "relevant_papers": ["2209.12801"],
+    "category": "paraphrased",
+    "notes": "Subsampling for KG embedding"
+  }
+]
