@@ -42,6 +42,10 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
 ---
 
 ## Architecture (Current)
+
+## Architecture (Current)
+
+```
                        ┌─────────────────────┐
                        │   arXiv API         │
                        └──────────┬──────────┘
@@ -83,6 +87,7 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
                        ┌─────────────────────┐
                        │  Hybrid Search CLI  │
                        └─────────────────────┘
+```
 ## Tech Stack
 
 **Languages:** Python 3.12
