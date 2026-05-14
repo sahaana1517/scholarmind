@@ -29,7 +29,7 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
 | Local CPU embedding generation | ✅ Implemented | BGE-small-en-v1.5 (384-dim, normalized) |
 | Cloud vector indexing | ✅ Implemented | Qdrant Cloud, cosine similarity |
 | Semantic search CLI | ✅ Implemented | Sub-second retrieval over 1,100+ chunks |
-| Hybrid retrieval (BM25 + dense) | 🚧 In progress | Reciprocal Rank Fusion |
+| Hybrid retrieval (BM25 + dense) | ✅ Implemented | Reciprocal Rank Fusion (RRF) |
 | Cross-encoder re-ranking | 🚧 Planned | ms-marco-MiniLM |
 | Contextual retrieval | 🚧 Planned | Anthropic's contextual chunking technique |
 | Agentic reasoning layer | 🚧 Planned | LangGraph multi-step agent |
@@ -42,43 +42,47 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
 ---
 
 ## Architecture (Current)
-                   ┌─────────────────────┐
-                   │   arXiv API         │
-                   └──────────┬──────────┘
-                              │
-                              ▼
-                   ┌─────────────────────┐
-                   │  PDF Ingestion      │
-                   │  (pypdf)            │
-                   └──────────┬──────────┘
-                              │
-                              ▼
-                   ┌─────────────────────┐
-                   │  Chunking           │
-                   │  (tiktoken, regex)  │
-                   └──────────┬──────────┘
-                              │
-                              ▼
-                   ┌─────────────────────┐
-                   │  Embedding          │
-                   │  (BGE-small, CPU)   │
-                   └──────────┬──────────┘
-                              │
-                              ▼
-                   ┌─────────────────────┐
-                   │  Qdrant Cloud       │
-                   │  (vector store)     │
-                   └──────────┬──────────┘
-                              │
-              ┌───────────────┴───────────────┐
-              │                               │
-              ▼                               ▼
-    ┌────────────────────┐      ┌────────────────────┐
-    │  Semantic Search   │      │  (Future: Agent)   │
-    │  (cosine sim)      │      │                    │
-    └────────────────────┘      └────────────────────┘
-    ---
-
+                       ┌─────────────────────┐
+                       │   arXiv API         │
+                       └──────────┬──────────┘
+                                  │
+                                  ▼
+                       ┌─────────────────────┐
+                       │  PDF Ingestion      │
+                       │  (pypdf)            │
+                       └──────────┬──────────┘
+                                  │
+                                  ▼
+                       ┌─────────────────────┐
+                       │  Chunking           │
+                       │  (tiktoken, regex)  │
+                       └──────────┬──────────┘
+                                  │
+              ┌───────────────────┴───────────────────┐
+              │                                       │
+              ▼                                       ▼
+   ┌────────────────────┐                  ┌────────────────────┐
+   │  BGE-small         │                  │  BM25Okapi         │
+   │  embeddings (CPU)  │                  │  (local pickle)    │
+   └─────────┬──────────┘                  └─────────┬──────────┘
+             │                                       │
+             ▼                                       ▼
+   ┌────────────────────┐                  ┌────────────────────┐
+   │  Qdrant Cloud      │                  │  Sparse Index      │
+   │  (dense vectors)   │                  │  (keyword search)  │
+   └─────────┬──────────┘                  └─────────┬──────────┘
+             │                                       │
+             └───────────────────┬───────────────────┘
+                                 ▼
+                       ┌─────────────────────┐
+                       │  Reciprocal Rank    │
+                       │  Fusion (RRF)       │
+                       └──────────┬──────────┘
+                                  │
+                                  ▼
+                       ┌─────────────────────┐
+                       │  Hybrid Search CLI  │
+                       └─────────────────────┘
 ## Tech Stack
 
 **Languages:** Python 3.12
@@ -151,11 +155,17 @@ python -m backend.app.ingestion.chunker
 # 4. Generate embeddings
 python -m backend.app.ingestion.embedder
 
-# 5. Index in Qdrant
+# 5. Index in Qdrant (dense vectors)
 python -m backend.app.retrieval.indexer
 
-# 6. Try semantic search
+# 6. Build BM25 sparse index
+python -m backend.app.retrieval.bm25_index
+
+# 7. Try semantic search (dense only)
 python -m backend.app.retrieval.search
+
+# 8. Try hybrid search (dense + BM25 + RRF)
+python -m backend.app.retrieval.hybrid_search
 ```
 
 ---
@@ -182,7 +192,7 @@ BGE-small-en-v1.5 produces 384-dim embeddings competitive with OpenAI's `text-em
 Embeddings are L2-normalized at generation time, which means cosine similarity reduces to a dot product — faster computation, cleaner geometry for retrieval ranking.
 
 **Why hybrid retrieval (planned)?**
-Dense retrieval misses exact-term matches (acronyms, identifiers, rare technical terms). BM25 catches what embeddings miss. Reciprocal Rank Fusion combines both without needing to calibrate scores.
+Dense retrieval captures semantic meaning but can miss exact-term matches — acronyms, paper IDs, rare technical jargon. BM25 catches those. The two are combined using Reciprocal Rank Fusion (Cormack et al., 2009), which sidesteps the problem of incompatible score scales (cosine ranges 0-1, BM25 ranges 0-50+) by fusing on rank position rather than absolute scores. In practice this surfaces chunks that one method alone would have buried, demonstrably improving recall on technical queries.
 
 **Why Neo4j for GraphRAG?**
 Some research questions are inherently relational — "papers that cite X and also propose Y." Pure vector search can't express graph traversal; a knowledge graph layer can.
