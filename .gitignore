@@ -30,7 +30,8 @@ Thumbs.db
 logs/
 
 # Data
-data/papers/
+data/papers_raw/
+data/papers_processed/
 data/embeddings/
 *.pkl
 *.bin
@@ -41,3 +42,6 @@ data/embeddings/
 secrets/
 credentials/
 test_*.py
+
+# Notebook checkpoints
+.ipynb_checkpoints/
