@@ -29,8 +29,9 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
 | Local CPU embedding generation | ✅ Implemented | BGE-small-en-v1.5 (384-dim, normalized) |
 | Cloud vector indexing | ✅ Implemented | Qdrant Cloud, cosine similarity |
 | Semantic search CLI | ✅ Implemented | Sub-second retrieval over 1,100+ chunks |
-| Hybrid retrieval (BM25 + dense) | ✅ Implemented | Reciprocal Rank Fusion (RRF) |
-| Cross-encoder re-ranking | 🚧 Planned | ms-marco-MiniLM |
+| Hybrid retrieval (BM25 + dense) | ✅ Implemented | RRF — +6.3% MRR over dense alone |
+| Cross-encoder re-ranking | ✅ Implemented | ms-marco-MiniLM (kept as optional) |
+| Retrieval evaluation framework | ✅ Implemented | 25-query benchmark with MRR, Recall@K, Hit@K |
 | Contextual retrieval | 🚧 Planned | Anthropic's contextual chunking technique |
 | Agentic reasoning layer | 🚧 Planned | LangGraph multi-step agent |
 | Knowledge graph layer | 🚧 Planned | Neo4j AuraDB for GraphRAG |
@@ -85,7 +86,13 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
                                   │
                                   ▼
                        ┌─────────────────────┐
-                       │  Hybrid Search CLI  │
+                       │  Cross-Encoder      │
+                       │  Reranker (opt.)    │
+                       └──────────┬──────────┘
+                                  │
+                                  ▼
+                       ┌─────────────────────┐
+                       │  Search CLI         │
                        └─────────────────────┘
 ```
 ## Tech Stack
@@ -186,6 +193,24 @@ Augmented Generation...
 💬 Retrieval-augmented generation for large language models:
 A survey...
 ⏱  Retrieved in 920ms
+---
+
+## Evaluation Results
+
+A 25-query benchmark with 23 paraphrased single-paper queries and 4 cross-paper synthesis queries:
+
+| Method | MRR | Recall@5 | Recall@10 | Hit@1 | Avg Latency |
+|---|---|---|---|---|---|
+| Dense only (BGE-small) | 0.840 | 0.887 | 0.900 | 0.760 | 455ms |
+| **Hybrid (Dense + BM25 + RRF)** | **0.893** | **0.900** | **1.000** | **0.840** | 598ms |
+| Hybrid + Cross-encoder rerank | 0.847 | 0.879 | 1.000 | 0.760 | 2704ms |
+
+**Hybrid retrieval wins on this corpus** — +6.3% MRR and +10.5% Hit@1 over dense alone, with full recall@10 and only 30% latency overhead.
+
+**Reranking slightly degraded MRR.** Traced to a domain mismatch: the MS-MARCO-trained reranker overweights surface keyword overlap on academic prose. Documented as a finding rather than a feature — see [eval_results_summary.md](experiments/eval_results_summary.md) for details.
+
+Reproduce with: `python -m experiments.evaluate_retrieval`
+
 ---
 
 ## Engineering Notes
