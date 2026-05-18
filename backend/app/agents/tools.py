@@ -12,6 +12,7 @@ synthesizes the final answer from these structured returns.
 from typing import List, Dict
 
 from backend.app.retrieval.hybrid_search import hybrid_search
+from backend.app.retrieval.graph_query import graph_query as _graph_query_dispatch
 
 
 def search_papers(query: str, top_k: int = 5) -> List[Dict]:
@@ -29,7 +30,6 @@ def search_papers(query: str, top_k: int = 5) -> List[Dict]:
         List of chunks, each with: paper_id, page, text, dense_score, sparse_score.
     """
     results = hybrid_search(query, top_k=top_k, fetch_k=30)
-    # Strip noisy intermediate fields, keep what's useful for the agent
     cleaned = [
         {
             "paper_id": r["paper_id"],
@@ -80,8 +80,6 @@ def extract_methodology(method_or_paper: str, top_k: int = 6) -> List[Dict]:
     Returns:
         List of chunks biased toward methods/approach content.
     """
-    # We bias the query toward methodology by appending hints to the search query.
-    # The retriever will surface chunks containing these keywords more strongly.
     method_biased_query = (
         f"methodology approach algorithm architecture implementation "
         f"of {method_or_paper}"
@@ -97,16 +95,56 @@ def extract_methodology(method_or_paper: str, top_k: int = 6) -> List[Dict]:
     ]
 
 
+def graph_query(
+    intent: str,
+    method: str = "",
+    concept: str = "",
+    arxiv_id: str = "",
+) -> Dict:
+    """
+    Query the knowledge graph for relationship-based information about papers.
+
+    Use this tool when the user wants to find papers based on RELATIONSHIPS
+    rather than content — questions about which papers use a method, which
+    study a concept, what methods a specific paper uses, or which papers are
+    similar to another paper by shared methods/concepts.
+
+    Args:
+        intent: One of the following (REQUIRED):
+            - "papers_using_method"        (also need: method)
+            - "papers_studying_concept"    (also need: concept)
+            - "methods_of_paper"           (also need: arxiv_id)
+            - "concepts_of_paper"          (also need: arxiv_id)
+            - "papers_similar_by_methods"  (also need: arxiv_id)
+            - "papers_similar_by_concepts" (also need: arxiv_id)
+        method: Method/technique name (e.g. "BM25", "transformer attention").
+        concept: Concept/topic name (e.g. "retrieval", "knowledge graph").
+        arxiv_id: arXiv ID like "2406.13249".
+
+    Returns:
+        Dict with 'intent' and 'results' (a list of papers or attributes).
+    """
+    # Pass only the relevant arg based on intent
+    kwargs = {"intent": intent}
+    if method:
+        kwargs["method"] = method
+    if concept:
+        kwargs["concept"] = concept
+    if arxiv_id:
+        kwargs["arxiv_id"] = arxiv_id
+    return _graph_query_dispatch(**kwargs)
+
+
 # Registry — the planner uses this to look up tools by name
 TOOL_REGISTRY = {
     "search_papers": search_papers,
     "compare_papers": compare_papers,
     "extract_methodology": extract_methodology,
+    "graph_query": graph_query,
 }
 
 
 # Tool descriptions for the planner prompt
-# (Generated from docstrings; we keep this static for cleaner prompts)
 TOOL_DESCRIPTIONS = """
 Available tools:
 
@@ -123,7 +161,23 @@ Available tools:
 3. extract_methodology(method_or_paper: str) -> list[chunks]
    - Retrieves methodology/approach sections specifically.
    - USE FOR: Questions asking HOW something works, the algorithm, the
-     architecture, the implementation details. NOT for general questions.
+     architecture, the implementation details.
+
+4. graph_query(intent: str, method?: str, concept?: str, arxiv_id?: str) -> dict
+   - Queries the knowledge graph of papers, methods, concepts, authors.
+   - USE FOR: RELATIONSHIP questions — finding papers BY criteria, not by content.
+     Examples:
+       "Which papers use BM25?"           -> intent=papers_using_method, method="BM25"
+       "Which papers study knowledge graphs?" -> intent=papers_studying_concept, concept="knowledge graph"
+       "What methods does paper 2406.13249 use?" -> intent=methods_of_paper, arxiv_id="2406.13249"
+       "Find papers similar to 2502.01113"  -> intent=papers_similar_by_concepts, arxiv_id="2502.01113"
+   - Available intents:
+       papers_using_method        (method=...)
+       papers_studying_concept    (concept=...)
+       methods_of_paper           (arxiv_id=...)
+       concepts_of_paper          (arxiv_id=...)
+       papers_similar_by_methods  (arxiv_id=...)
+       papers_similar_by_concepts (arxiv_id=...)
 """.strip()
 
 
@@ -141,5 +195,9 @@ if __name__ == "__main__":
     print("\nTesting extract_methodology...")
     r = extract_methodology("Curator multi-tenant indexing", top_k=2)
     print(f"  ✅ returned {len(r)} chunks; first: {r[0]['paper_id']} p.{r[0]['page']}")
+
+    print("\nTesting graph_query...")
+    r = graph_query(intent="papers_using_method", method="transformer")
+    print(f"  ✅ returned {len(r['results'])} graph results")
 
     print("\n🎉 All tools work")

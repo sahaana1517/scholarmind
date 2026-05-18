@@ -42,12 +42,17 @@ Decision rules:
   ("X vs Y", "differences between A and B", "compare X and Y").
 - Use extract_methodology ONLY if the user asks HOW something works, the algorithm,
   or implementation details of a specific named method/system.
+- Use graph_query ONLY for RELATIONSHIP questions where the user wants to find
+  papers BY criteria rather than read paper content. Examples:
+    "Which papers use BM25?" -> graph_query papers_using_method
+    "Papers about knowledge graphs" -> graph_query papers_studying_concept
+    "Find papers similar to 2406.13249" -> graph_query papers_similar_by_concepts
 - If a question is ambiguous, default to search_papers.
 
 Output format (JSON only):
 {{
   "reasoning": "<1-sentence justification for tool choice>",
-  "tool": "<one of: search_papers | compare_papers | extract_methodology>",
+  "tool": "<one of: search_papers | compare_papers | extract_methodology | graph_query>",
   "arguments": {{ <kwargs the chosen tool takes> }}
 }}
 
@@ -55,6 +60,8 @@ Argument shapes by tool:
 - search_papers:        {{"query": "<rephrased search query>"}}
 - compare_papers:       {{"topic_a": "<first topic>", "topic_b": "<second topic>"}}
 - extract_methodology:  {{"method_or_paper": "<name>"}}
+- graph_query:          {{"intent": "<one of the 6 intents>", "method": "...", "concept": "...", "arxiv_id": "..."}}
+  (omit fields that are not needed for the chosen intent)
 
 Examples:
 
@@ -78,6 +85,20 @@ User question: "How does Curator's multi-tenant index work?"
   "tool": "extract_methodology",
   "arguments": {{"method_or_paper": "Curator multi-tenant vector index"}}
 }}
+
+User question: "Which papers use BM25?"
+{{
+  "reasoning": "Asks which papers use a specific method — graph relationship query.",
+  "tool": "graph_query",
+  "arguments": {{"intent": "papers_using_method", "method": "BM25"}}
+}}
+
+User question: "Find papers similar to 2406.13249"
+{{
+  "reasoning": "Asks for similarity-by-relationship to a specific paper ID.",
+  "tool": "graph_query",
+  "arguments": {{"intent": "papers_similar_by_concepts", "arxiv_id": "2406.13249"}}
+}}
 """.strip()
 
 
@@ -85,9 +106,7 @@ def _strip_code_fences(text: str) -> str:
     """LLMs sometimes wrap JSON in ```json fences despite instructions."""
     t = text.strip()
     if t.startswith("```"):
-        # remove leading fence (with optional language tag)
         t = t.split("\n", 1)[1] if "\n" in t else t[3:]
-        # remove trailing fence
         if t.rstrip().endswith("```"):
             t = t.rstrip()[:-3]
     return t.strip()
@@ -130,7 +149,6 @@ def plan(
             f"Planner produced invalid JSON. Raw output:\n{raw}\nError: {e}"
         )
 
-    # Validate the schema
     if "tool" not in parsed or "arguments" not in parsed:
         raise ValueError(f"Planner missing required fields: {parsed}")
 
@@ -149,12 +167,14 @@ def plan(
 
 
 if __name__ == "__main__":
-    # Test the planner on 4 diverse queries
+    # Test the planner on diverse queries including graph_query routing
     test_queries = [
         "What is retrieval augmented generation?",
         "How does R2AG differ from GFM-RAG?",
         "How does Curator's multi-tenant index work?",
         "What are the main security risks of LLM agents?",
+        "Which papers use BM25?",
+        "Find papers similar to 2406.13249",
     ]
 
     print("=" * 72)

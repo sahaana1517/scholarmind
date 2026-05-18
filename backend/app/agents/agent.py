@@ -66,10 +66,13 @@ def execute_tool_node(state: AgentState) -> dict:
     elapsed_ms = (time.time() - t0) * 1000
 
     chunks: List[Dict] = []
+
     if tool_name == "search_papers":
         chunks = result
+
     elif tool_name == "extract_methodology":
         chunks = result
+
     elif tool_name == "compare_papers":
         a_chunks = result["topic_a"]["chunks"]
         b_chunks = result["topic_b"]["chunks"]
@@ -81,6 +84,45 @@ def execute_tool_node(state: AgentState) -> dict:
             c2 = dict(c)
             c2["text"] = f"[TOPIC B: {result['topic_b']['query']}]\n{c['text']}"
             chunks.append(c2)
+
+    elif tool_name == "graph_query":
+        # Convert graph results into chunk-shaped dicts so the generator
+        # treats them like retrieved text. Each "chunk" describes one
+        # graph fact attributed to the relevant paper.
+        results = result.get("results", [])
+        intent = result.get("intent", "")
+        for item in results:
+            if isinstance(item, dict):
+                if "title" in item and "arxiv_id" in item:
+                    text_parts = [f"Paper {item['arxiv_id']}: {item['title']}"]
+                    if "shared_methods" in item:
+                        text_parts.append(
+                            f"Shared methods: {', '.join(item['shared_methods'])}"
+                        )
+                    if "shared_concepts" in item:
+                        text_parts.append(
+                            f"Shared concepts: {', '.join(item['shared_concepts'])}"
+                        )
+                    if "matched_method" in item:
+                        text_parts.append(
+                            f"Matched on method: {item['matched_method']}"
+                        )
+                    if "matched_concept" in item:
+                        text_parts.append(
+                            f"Matched on concept: {item['matched_concept']}"
+                        )
+                    chunks.append({
+                        "paper_id": item["arxiv_id"],
+                        "page": "—",
+                        "text": "\n".join(text_parts),
+                    })
+            elif isinstance(item, str):
+                # methods_of_paper / concepts_of_paper return list[str]
+                chunks.append({
+                    "paper_id": result.get("arxiv_id", "graph"),
+                    "page": "—",
+                    "text": f"{intent}: {item}",
+                })
 
     print(f"   → Retrieved {len(chunks)} chunks")
 
