@@ -1,0 +1,652 @@
+[
+  {
+    "paper_id": "2009.06103",
+    "title": "Tax Knowledge Graph for a Smarter and More Personalized TurboTax",
+    "authors": [
+      "Jay Yu",
+      "Kevin McCluskey",
+      "Saikat Mukherjee"
+    ],
+    "methods_used": [
+      "Ontology engineering",
+      "Automated reasoning",
+      "Knowledge Graph technology"
+    ],
+    "concepts_studied": [
+      "Knowledge Graph",
+      "Explainable AI",
+      "Symbolic AI",
+      "Compliance Logic"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2203.00964",
+    "title": "PKGM: A Pre-trained Knowledge Graph Model for E-commerce Application",
+    "authors": [
+      "Wen Zhang",
+      "Chi-Man Wong",
+      "Ganqiang Ye",
+      "Bo Wen",
+      "Hongting Zhou"
+    ],
+    "methods_used": [
+      "Pre-training",
+      "Embedding",
+      "Knowledge Graph Embedding"
+    ],
+    "concepts_studied": [
+      "Knowledge Graph",
+      "E-commerce Application",
+      "Pre-trained Knowledge Graph Model"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2209.12801",
+    "title": "Subsampling for Knowledge Graph Embedding Explained",
+    "authors": [
+      "Hidetaka Kamigaito",
+      "Katsuhiko Hayashi"
+    ],
+    "methods_used": [
+      "Negative Sampling Loss",
+      "word2vec",
+      "Frequency-based Subsampling",
+      "Unique-based Subsampling"
+    ],
+    "concepts_studied": [
+      "Knowledge Graph Embedding",
+      "Knowledge Graph Completion",
+      "Subsampling"
+    ],
+    "papers_cited": [
+      "2209.12801"
+    ]
+  },
+  {
+    "paper_id": "2210.08119",
+    "title": "A Survey on Knowledge Graph-based Methods for Automated Driving",
+    "authors": [
+      "Juergen Luettin",
+      "Sebastian Monka",
+      "Cory Henson",
+      "Lavdim Halilaj"
+    ],
+    "methods_used": [
+      "Deep learning",
+      "Knowledge graph embeddings",
+      "Graph neural networks",
+      "Knowledge representation learning"
+    ],
+    "concepts_studied": [
+      "Automated Driving",
+      "Knowledge graphs",
+      "Ontologies",
+      "Scene understanding",
+      "Motion planning"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2303.16780",
+    "title": "Thistle: A Vector Database in Rust",
+    "authors": [
+      "Brad Windsor",
+      "Kevin Choi"
+    ],
+    "methods_used": [
+      "SBERT",
+      "cosine distance",
+      "Euclidean distance",
+      "proximity graph method",
+      "locality sensitive hashing"
+    ],
+    "concepts_studied": [
+      "latent knowledge use",
+      "knowledge representation",
+      "Natural Language Processing",
+      "vector databases"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2401.07119",
+    "title": "Curator: Efficient Indexing for Multi-Tenant Vector Databases",
+    "authors": [
+      "Yicheng Jin",
+      "Yongji Wu",
+      "Wenjun Hu",
+      "Bruce M. Maggs",
+      "Xiao Zhang"
+    ],
+    "methods_used": [
+      "approximate nearest neighbor (ANN) search",
+      "vector indexing",
+      "clustering tree",
+      "metadata filtering"
+    ],
+    "concepts_studied": [
+      "multi-tenancy in vector databases",
+      "vector similarity search",
+      "efficient indexing"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2402.06664",
+    "title": "LLM Agents can Autonomously Hack Websites",
+    "authors": [
+      "Richard Fang",
+      "Rohan Bindu",
+      "Akul Gupta",
+      "Qiusi Zhan",
+      "Daniel Kang"
+    ],
+    "methods_used": [
+      "GPT-4",
+      "SQL injection",
+      "tool use",
+      "extended context"
+    ],
+    "concepts_studied": [
+      "cybersecurity",
+      "LLM agents",
+      "autonomous hacking",
+      "web security"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2405.15436",
+    "title": "HybridContextRetrievalAugmentedGenerationPipeline:LLM-AugmentedKnowledgeGraphsandVectorDatabaseforAccreditationReportingAssistance",
+    "authors": [
+      "Candace Edwards"
+    ],
+    "methods_used": [
+      "RAGAs framework",
+      "Large Language Models",
+      "vector database",
+      "knowledge graph",
+      "LangChain",
+      "Cypher",
+      "Neo4j"
+    ],
+    "concepts_studied": [
+      "accreditation reporting",
+      "knowledge graph construction",
+      "natural language processing",
+      "information retrieval"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2406.13249",
+    "title": "R2AG: Incorporating Retrieval Information into Retrieval Augmented Generation",
+    "authors": [
+      "Fuda Ye",
+      "Shuangyin Li",
+      "Yongqi Zhang",
+      "Lei Chen"
+    ],
+    "methods_used": [
+      "R2-Former",
+      "Retrieval-aware prompting strategy",
+      "Retrieval augmented generation (RAG)"
+    ],
+    "concepts_studied": [
+      "Retrieval augmented generation",
+      "Semantic gap between retrievers and LLMs",
+      "Large language models (LLMs)"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2407.01231",
+    "title": "MIRAI : Evaluating LLM Agents for Event Forecasting",
+    "authors": [
+      "Chenchen Ye",
+      "Ziniu Hu",
+      "Yihe Deng",
+      "Zijie Huang",
+      "Mingyu Derek Ma"
+    ],
+    "methods_used": [
+      "GDELT",
+      "Deep Learning",
+      "Neural Networks",
+      "APIs"
+    ],
+    "concepts_studied": [
+      "Event Forecasting",
+      "International Relations",
+      "Large Language Models"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2411.18583",
+    "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+    "authors": [
+      "Nurshat Fateh Ali",
+      "Shakil Mosharrof",
+      "Md. Mahdi Mohtasim",
+      "T. Gopi Krishna"
+    ],
+    "methods_used": [
+      "spaCy",
+      "Simple T5",
+      "GPT-3.5-turbo",
+      "ROUGE"
+    ],
+    "concepts_studied": [
+      "Automated Literature Review",
+      "Natural Language Processing",
+      "Retrieval-augmented generation"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2502.00306",
+    "title": "Riddle Me This! Stealthy Membership Inference for Retrieval-Augmented Generation",
+    "authors": [
+      "Ali Naseh",
+      "Yuefeng Peng",
+      "Anshuman Suri",
+      "Harsh Chaudhari",
+      "Alina Oprea"
+    ],
+    "methods_used": [
+      "Interrogation Attack (IA)",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "concepts_studied": [
+      "Membership Inference",
+      "Retrieval-Augmented Generation",
+      "Security and Privacy"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2502.01113",
+    "title": "GFM-RAG: Graph Foundation Model for Retrieval Augmented Generation",
+    "authors": [
+      "Linhao Luo",
+      "Zicheng Zhao",
+      "Gholamreza Haffari",
+      "Chen Gong",
+      "Dinh Phung"
+    ],
+    "methods_used": [
+      "Graph Neural Network",
+      "Personalized PageRank algorithm",
+      "GraphRAG"
+    ],
+    "concepts_studied": [
+      "Retrieval-augmented generation",
+      "Graph-enhanced retrieval",
+      "Multi-hop reasoning"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2503.11733",
+    "title": "LLM Agents for Education: Advances and Applications",
+    "authors": [
+      "Zhendong Chu",
+      "Shen Wang",
+      "Jian Xie",
+      "Tinghui Zhu",
+      "Yibo Yan"
+    ],
+    "methods_used": [
+      "Knowledge Tracing",
+      "Cognitive Diagnosis",
+      "Memory",
+      "Tool Use",
+      "Planning"
+    ],
+    "concepts_studied": [
+      "Educational LLM Agents",
+      "Personalized Learning",
+      "Intelligent Tutoring",
+      "Adaptive Learning"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2503.16581",
+    "title": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models",
+    "authors": [
+      "Zahra Khalila",
+      "Arbi Haza Nasution",
+      "Winda Monika",
+      "Aytug Onan",
+      "Yohei Murakami"
+    ],
+    "methods_used": [
+      "Retrieval-Augmented Generation",
+      "Large Language Models"
+    ],
+    "concepts_studied": [
+      "Quranic Studies",
+      "Question Answering",
+      "Natural Language Processing"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2505.17648",
+    "title": "Simulating Macroeconomic Expectations using LLM Agents",
+    "authors": [
+      "Jianhao Lin",
+      "Lexuan Sun",
+      "Yixin Yan"
+    ],
+    "methods_used": [
+      "LLM Agents",
+      "Prompt Engineering",
+      "Survey Experiments"
+    ],
+    "concepts_studied": [
+      "Expectation Formation",
+      "Macroeconomic Dynamics",
+      "AI Behavioral Science"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2507.02917",
+    "title": "Echo State Transformer: Attention over Finite Memories",
+    "authors": [
+      "Yannis Bendi-Ouis",
+      "Xavier Hinaut"
+    ],
+    "methods_used": [
+      "Transformer attention mechanisms",
+      "Reservoir Computing",
+      "Echo State Networks"
+    ],
+    "concepts_studied": [
+      "Working Memory models",
+      "Time Series analysis",
+      "Transformer architecture"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2509.13978",
+    "title": "LLM Agents for Interactive Workflow Provenance: Reference Architecture and Evaluation Methodology",
+    "authors": [
+      "Renan Souza",
+      "Timothy Poteet",
+      "Brian Etz",
+      "Daniel Rosendo",
+      "Amal Gueroudji"
+    ],
+    "methods_used": [
+      "Retrieval-Augmented Generation (RAG)",
+      "Model Context Protocol (MCP)",
+      "prompt engineering"
+    ],
+    "concepts_studied": [
+      "Workflow Provenance",
+      "Scientific Workflows",
+      "Artificial intelligence",
+      "Large Language Models"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2509.23471",
+    "title": "Drift-Adapter: A Practical Approach to Near Zero-Downtime Embedding Model Upgrades in Vector Databases",
+    "authors": [
+      "Harshil Vejendla"
+    ],
+    "methods_used": [
+      "Orthogonal Procrustes",
+      "Low-Rank Affine",
+      "Residual MLP",
+      "Approximate Nearest Neighbor (ANN) index",
+      "FAISS"
+    ],
+    "concepts_studied": [
+      "embedding space alignment",
+      "vector databases",
+      "model upgrades",
+      "Approximate Nearest Neighbor search"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2510.08255",
+    "title": "OPPONENTSHAPING INLLM AGENTS",
+    "authors": [
+      "Marta Emili Garcia Segura",
+      "Stephen Hailes",
+      "Mirco Musolesi"
+    ],
+    "methods_used": [
+      "Proximal Policy Optimization (PPO)",
+      "ShapeLLM",
+      "model-free opponent shaping"
+    ],
+    "concepts_studied": [
+      "opponent shaping",
+      "Large Language Models (LLMs)",
+      "multi-agent interactions"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2510.22344",
+    "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+    "authors": [
+      "Mohammad Aghajani Asl",
+      "Majid Asgari-Bidhendi",
+      "Behrooz Minaei-Bidgoli"
+    ],
+    "methods_used": [
+      "Retrieval-Augmented Generation",
+      "Iterative Refinement Cycle",
+      "Structured Evidence Assessment",
+      "Adaptive Query Refinement"
+    ],
+    "concepts_studied": [
+      "Large Language Models",
+      "Retrieval-Augmented Generation",
+      "Multi-hop Reasoning",
+      "Faithful Generation"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2511.06455",
+    "title": "A Multi-Agent System for Semantic Mapping of Relational Data to Knowledge Graphs",
+    "authors": [
+      "Milena Trajanoska",
+      "Riste Stojanov",
+      "Dimitar Trajanov"
+    ],
+    "methods_used": [
+      "Large Language Models",
+      "Schema.org vocabulary",
+      "Graph-vector store construction",
+      "Multi-agent system architecture"
+    ],
+    "concepts_studied": [
+      "Knowledge Graphs",
+      "Semantic AI Agents",
+      "Data Integration"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2511.11017",
+    "title": "AI Agent-Driven Framework for Automated Product Knowledge Graph Construction in E-Commerce",
+    "authors": [
+      "Dimitar Peshevski",
+      "Riste Stojanov",
+      "Dimitar Trajanov"
+    ],
+    "methods_used": [
+      "Large Language Models",
+      "Extract-Define-Canonicalize framework",
+      "ontology creation and expansion",
+      "ontology refinement",
+      "knowledge graph population"
+    ],
+    "concepts_studied": [
+      "Knowledge Graph Construction",
+      "E-commerce",
+      "Product Data Extraction",
+      "Semantic Web"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2601.11618",
+    "title": "Geometric Attention",
+    "authors": [
+      "Luis Rosario Freytes"
+    ],
+    "methods_used": [
+      "PruneW",
+      "Eckart–Young/SVD",
+      "Sinkhorn"
+    ],
+    "concepts_studied": [
+      "Transformer Attention",
+      "Geometric Attention",
+      "Attention Update Layer"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2601.14112",
+    "title": "Learning to Explain: Supervised Token Attribution from Transformer Attention Patterns",
+    "authors": [
+      "George Mihaila"
+    ],
+    "methods_used": [
+      "LIME",
+      "SHAP",
+      "Integrated Gradients",
+      "Grad-CAM",
+      "Layer-wise Relevance Propagation",
+      "ExpNet"
+    ],
+    "concepts_studied": [
+      "Explainable AI",
+      "Transformer Attention Mechanisms",
+      "Model Interpretability",
+      "Natural Language Processing"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2602.11443",
+    "title": "Filtered Approximate Nearest Neighbor Search in Vector Databases: System Design and Performance Analysis",
+    "authors": [
+      "Abylay Amanbayev",
+      "Brian Tsan",
+      "Tri Dang",
+      "Florin Rusu"
+    ],
+    "methods_used": [
+      "Approximate Nearest Neighbor Search",
+      "FAISS",
+      "Milvus",
+      "pgvector",
+      "Pre-filtering",
+      "Post-filtering"
+    ],
+    "concepts_studied": [
+      "Vector Databases",
+      "Filtered Approximate Nearest Neighbor Search",
+      "Retrieval-Augmented Generation"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2602.17526",
+    "title": "The Anxiety of Influence: Bloom Filters in Transformer Attention Heads",
+    "authors": [
+      "Peter Balogh"
+    ],
+    "methods_used": [
+      "Bloom filters",
+      "ablation analysis",
+      "cosine distance",
+      "locality-sensitive hashing"
+    ],
+    "concepts_studied": [
+      "membership testing",
+      "transformer attention heads",
+      "language models"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2602.23368",
+    "title": "Keyword search is all you need: Achieving RAG-Level Performance without vector databases using agentic tool use",
+    "authors": [
+      "Shreyas Subramanian",
+      "Adewale Akinfaderin",
+      "Yanyan Zhang",
+      "Ishan Singh",
+      "Mani Khanuja"
+    ],
+    "methods_used": [
+      "Retrieval-Augmented Generation (RAG)",
+      "tool-augmented LLM agents",
+      "agentic keyword search",
+      "LLM-as-a-Judge",
+      "dense passage retrieval"
+    ],
+    "concepts_studied": [
+      "Large Language Models (LLMs)",
+      "information retrieval",
+      "question-answering systems",
+      "retrieval mechanisms"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2604.10791",
+    "title": "Position-Agnostic Pre-Projection for Transformer Attention: Nonlinear Feature Construction and Content Skip Before Q/K/V",
+    "authors": [
+      "Chirag Shinde"
+    ],
+    "methods_used": [
+      "RMSNorm",
+      "SiLU",
+      "AdamW",
+      "LoRA"
+    ],
+    "concepts_studied": [
+      "Transformer Attention",
+      "Position-Agnostic Feature Construction",
+      "Content Skip Connection"
+    ],
+    "papers_cited": []
+  },
+  {
+    "paper_id": "2605.03110",
+    "title": "Cascade Token Selection for Transformer Attention Acceleration",
+    "authors": [
+      "Stephen J. Thomas"
+    ],
+    "methods_used": [
+      "Activation Decorrelation Attention (ADA)",
+      "Gram threshold",
+      "FlashAttention"
+    ],
+    "concepts_studied": [
+      "Transformer Attention",
+      "Attention Compression",
+      "Token Selection"
+    ],
+    "papers_cited": []
+  }
+]

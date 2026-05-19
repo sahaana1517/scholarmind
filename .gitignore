@@ -29,12 +29,14 @@ Thumbs.db
 *.log
 logs/
 
-# Data
+# Data — raw PDFs not needed on server (can re-download from arXiv)
 data/papers_raw/
-data/papers_processed/
+
+# Data — but DO commit processed indexes and chunks (needed for runtime)
+# (data/papers_processed/ and data/bm25_index.pkl are intentionally NOT ignored)
+
+# Other gitignored data
 data/embeddings/
-*.pkl
-*.bin
 
 # Secrets
 *.key
