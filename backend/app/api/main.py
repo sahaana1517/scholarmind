@@ -16,12 +16,16 @@ Run with:
 """
 
 import asyncio
+import logging
 import time
 from contextlib import asynccontextmanager
 from typing import List
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 from backend.app.core.config import settings
 from backend.app.api.schemas import (
@@ -60,14 +64,48 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — open in dev. Lock down to your frontend domain in prod.
+logging.basicConfig(
+    level=settings.LOG_LEVEL.upper(),
+    format="%(asctime)s %(levelname)s %(name)s %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("scholarmind")
+
+if settings.FORCE_HTTPS and settings.ENVIRONMENT.lower() == "production":
+    app.add_middleware(HTTPSRedirectMiddleware)
+
+trusted_hosts = [
+    host.strip()
+    for host in settings.BACKEND_TRUSTED_HOSTS.split(",")
+    if host.strip()
+]
+if trusted_hosts:
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=trusted_hosts)
+
+# CORS — open in dev, explicit origins required in production.
+allowed_origins = [
+    origin.strip()
+    for origin in settings.BACKEND_CORS_ORIGINS.split(",")
+    if origin.strip()
+]
+if settings.ENVIRONMENT.lower() == "production" and not allowed_origins:
+    raise RuntimeError(
+        "Production deployment requires BACKEND_CORS_ORIGINS to be set "
+        "to a comma-separated list of trusted frontend origins."
+    )
+if not allowed_origins:
+    allowed_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+if settings.ENABLE_GZIP:
+    app.add_middleware(GZipMiddleware, minimum_size=500)
 
 
 # ─── Health & Info ─────────────────────────────────────────────────────

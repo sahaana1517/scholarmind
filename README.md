@@ -119,6 +119,83 @@ Existing tools either drown you in keyword-matched results (Google Scholar) or h
 - `pydantic-settings` — type-safe configuration
 - `tqdm` — progress visualization
 
+## Deployment
+
+- Backend is served by Gunicorn + Uvicorn worker using `Procfile`.
+- Configure `ENVIRONMENT=production`, `BACKEND_CORS_ORIGINS`, `BACKEND_TRUSTED_HOSTS`, `LOG_LEVEL`, `FORCE_HTTPS`, and `ENABLE_GZIP` in `.env` for deployed environments.
+- Frontend uses `NEXT_PUBLIC_API_BASE` to point to the backend URL.
+- Use `scholarmind-ui/.env.example` and root `.env.example` as templates.
+
+## Rendering the Full Stack on Render
+
+The repository includes a `render.yaml` manifest with both backend and frontend services.
+This makes it easier to deploy the full app in a monorepo.
+
+### Backend service
+
+- Service name: `scholarmind-backend`
+- Runtime: Python
+- Build command: `pip install -r requirements.txt`
+- Start command: `gunicorn -k uvicorn.workers.UvicornWorker backend.app.api.main:app --bind 0.0.0.0:$PORT --workers 1 --log-level info`
+- Health check path: `/health`
+
+### Frontend service
+
+- Service name: `scholarmind-frontend`
+- Runtime: Node
+- Root directory: `scholarmind-ui`
+- Build command: `npm install && npm run build`
+- Start command: `npm run start`
+- Health check path: `/`
+
+### Shared Render environment configuration
+
+On Render, configure the following environment variables for the backend service:
+
+- `ENVIRONMENT=production`
+- `BACKEND_CORS_ORIGINS=https://your-frontend-domain.com`
+- `BACKEND_TRUSTED_HOSTS=your-backend-service.onrender.com`
+- `LOG_LEVEL=info`
+- `FORCE_HTTPS=true`
+- `ENABLE_GZIP=true`
+- `GROQ_API_KEY`
+- `HUGGINGFACE_API_KEY` (optional)
+- `QDRANT_URL`
+- `QDRANT_API_KEY`
+- `NEO4J_URI`
+- `NEO4J_USER`
+- `NEO4J_PASSWORD`
+- `DATABASE_URL`
+- `REDIS_URL`
+- `REDIS_TOKEN`
+- `LANGFUSE_PUBLIC_KEY`
+- `LANGFUSE_SECRET_KEY`
+- `LANGFUSE_HOST` (optional)
+
+For the frontend service, configure:
+
+- `NEXT_PUBLIC_API_BASE=https://<your-backend-service>.onrender.com`
+
+### Deploy checklist
+
+- `runtime.txt` is set to `python-3.12`
+- `Procfile` exists at the repo root for the backend service
+- `render.yaml` is present at the repo root
+- Backend `/health` returns `200`
+- Frontend starts successfully with `npm run start`
+
+### Local development
+
+- Copy `.env.example` to `.env`
+- Set `ENVIRONMENT=development`
+- Set `BACKEND_CORS_ORIGINS=http://localhost:3000`
+- Run locally with:
+  `uvicorn backend.app.api.main:app --host 0.0.0.0 --port 8000 --reload`
+
+- In another terminal, run frontend locally from `scholarmind-ui`:
+  `npm install`
+  `npm run dev`
+
 ---
 
 ## Project Structure

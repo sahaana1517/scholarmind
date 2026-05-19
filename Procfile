@@ -1,1 +1,1 @@
-web: uvicorn backend.app.api.main:app --host 0.0.0.0 --port $PORT
+web: gunicorn -k uvicorn.workers.UvicornWorker backend.app.api.main:app --bind 0.0.0.0:$PORT --workers 1 --log-level info

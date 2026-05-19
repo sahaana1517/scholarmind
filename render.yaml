@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: scholarmind-backend
+    env: python
+    branch: main
+    autoDeploy: true
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -k uvicorn.workers.UvicornWorker backend.app.api.main:app --bind 0.0.0.0:$PORT --workers 1 --log-level info
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: BACKEND_CORS_ORIGINS
+        value: https://your-frontend-domain.com
+      - key: BACKEND_TRUSTED_HOSTS
+        value: your-backend-service.onrender.com
+      - key: LOG_LEVEL
+        value: info
+      - key: FORCE_HTTPS
+        value: true
+      - key: ENABLE_GZIP
+        value: true
+
+  - type: web
+    name: scholarmind-frontend
+    env: node
+    branch: main
+    root: scholarmind-ui
+    autoDeploy: true
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NEXT_PUBLIC_API_BASE
+        value: https://your-backend-service.onrender.com

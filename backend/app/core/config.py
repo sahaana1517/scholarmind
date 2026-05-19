@@ -38,6 +38,14 @@ class Settings(BaseSettings):
     LANGFUSE_SECRET_KEY: str
     LANGFUSE_HOST: str = "https://cloud.langfuse.com"
 
+    # ─── Runtime / Deployment ────────────────────────────────────
+    ENVIRONMENT: str = "development"
+    BACKEND_CORS_ORIGINS: str = ""
+    BACKEND_TRUSTED_HOSTS: str = ""
+    LOG_LEVEL: str = "info"
+    FORCE_HTTPS: bool = False
+    ENABLE_GZIP: bool = True
+
     # ─── Local Model Names ─────────────────────────────────────
     EMBEDDING_MODEL: str = "BAAI/bge-small-en-v1.5"
     RERANKER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
