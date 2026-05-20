@@ -1,323 +1,242 @@
 # ScholarMind
 
-> An agentic RAG platform for research paper intelligence — semantic search and reasoning over academic literature, built with production-grade engineering practices.
+An agentic RAG (Retrieval-Augmented Generation) platform for research papers. Ask questions about machine learning research and get cited answers from a corpus of 30 arXiv papers.
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![Status](https://img.shields.io/badge/status-active%20development-orange.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-green.svg)]()
+🌐 **Live Demo:** https://scholarmind-ui.vercel.app
 
 ---
 
-## The Problem
+## What It Does
 
-Researchers spend hours digging through dozens of papers to answer questions like:
-- "Which papers propose improvements to the original RAG architecture?"
-- "What are the security implications of LLM agents?"
-- "How do modern vector databases handle multi-tenancy?"
+ScholarMind is a multi-tool AI research assistant that:
 
-Existing tools either drown you in keyword-matched results (Google Scholar) or hallucinate confidently without citations (ChatGPT). ScholarMind aims to do both better — return faithful, citation-grounded answers from a curated corpus, using agentic reasoning over hybrid retrieval and a knowledge graph layer.
+- Answers natural-language questions about ML research papers with **inline citations**
+- **Plans** which tool to use (semantic search, paper comparison, methodology lookup, or graph query) based on the question
+- Retrieves evidence using **hybrid search** (BM25 + dense embeddings + Reciprocal Rank Fusion)
+- Queries a **Neo4j knowledge graph** for relationship-based questions
+- Synthesizes cited answers using **Llama 3.3 70B** via Groq
+- Refuses out-of-corpus questions honestly (won't hallucinate)
 
----
-
-## Current Capabilities
-
-| Capability | Status | Notes |
-|---|---|---|
-| Automated paper ingestion (arXiv) | ✅ Implemented | 30-paper test corpus auto-downloaded |
-| PDF text extraction with cleanup | ✅ Implemented | Hyphenation, multi-page artifacts handled |
-| Token-aware paragraph chunking | ✅ Implemented | 800-token chunks with 100-token overlap |
-| Local CPU embedding generation | ✅ Implemented | BGE-small-en-v1.5 (384-dim, normalized) |
-| Cloud vector indexing | ✅ Implemented | Qdrant Cloud, cosine similarity |
-| Semantic search CLI | ✅ Implemented | Sub-second retrieval over 1,100+ chunks |
-| Hybrid retrieval (BM25 + dense) | ✅ Implemented | RRF — +6.3% MRR over dense alone |
-| Cross-encoder re-ranking | ✅ Implemented | ms-marco-MiniLM (kept as optional) |
-| Retrieval evaluation framework | ✅ Implemented | 25-query benchmark with MRR, Recall@K, Hit@K |
-| Contextual retrieval | 🚧 Planned | Anthropic's contextual chunking technique |
-| Agentic reasoning layer | 🚧 Planned | LangGraph multi-step agent |
-| Knowledge graph layer | 🚧 Planned | Neo4j AuraDB for GraphRAG |
-| Evaluation framework | 🚧 Planned | RAGAS + golden eval set |
-| FastAPI backend | 🚧 Planned | Async endpoints with streaming |
-| Next.js frontend | 🚧 Planned | Tailwind + shadcn/ui |
-| Production deployment | 🚧 Planned | Railway + Vercel |
+Example queries it handles well:
+- *"What is retrieval augmented generation?"* → semantic search
+- *"How does R²AG differ from GFM-RAG?"* → comparison search
+- *"How does Curator's multi-tenant index work?"* → methodology retrieval
+- *"Which papers study approximate nearest neighbor search?"* → graph query
+- *"How to cook pasta?"* → honest refusal (out of corpus)
 
 ---
 
-## Architecture (Current)
+## Architecture
 
-## Architecture (Current)
+┌──────────────┐
+│  Next.js UI  │  (Vercel)
+└──────┬───────┘
+│  HTTPS
+▼
+┌──────────────┐
+│   FastAPI    │  (Railway)
+│   /chat      │
+└──────┬───────┘
+│
+▼
+┌─────────────────────────────────────┐
+│         LangGraph Agent             │
+│                                     │
+│  planner → tool routing → synthesis │
+└──┬────────┬─────────┬────────┬──────┘
+│        │         │        │
+▼        ▼         ▼        ▼
+search   compare  methodology graph
+papers   papers   extraction   query
+│        │         │         │
+▼        ▼         ▼         ▼
+[Qdrant + BM25]            [Neo4j]
+hybrid retrieval     knowledge graph
+30 papers              30 papers
+1103 chunks         105 methods
+80 concepts
+319 relationships
 
-```
-                       ┌─────────────────────┐
-                       │   arXiv API         │
-                       └──────────┬──────────┘
-                                  │
-                                  ▼
-                       ┌─────────────────────┐
-                       │  PDF Ingestion      │
-                       │  (pypdf)            │
-                       └──────────┬──────────┘
-                                  │
-                                  ▼
-                       ┌─────────────────────┐
-                       │  Chunking           │
-                       │  (tiktoken, regex)  │
-                       └──────────┬──────────┘
-                                  │
-              ┌───────────────────┴───────────────────┐
-              │                                       │
-              ▼                                       ▼
-   ┌────────────────────┐                  ┌────────────────────┐
-   │  BGE-small         │                  │  BM25Okapi         │
-   │  embeddings (CPU)  │                  │  (local pickle)    │
-   └─────────┬──────────┘                  └─────────┬──────────┘
-             │                                       │
-             ▼                                       ▼
-   ┌────────────────────┐                  ┌────────────────────┐
-   │  Qdrant Cloud      │                  │  Sparse Index      │
-   │  (dense vectors)   │                  │  (keyword search)  │
-   └─────────┬──────────┘                  └─────────┬──────────┘
-             │                                       │
-             └───────────────────┬───────────────────┘
-                                 ▼
-                       ┌─────────────────────┐
-                       │  Reciprocal Rank    │
-                       │  Fusion (RRF)       │
-                       └──────────┬──────────┘
-                                  │
-                                  ▼
-                       ┌─────────────────────┐
-                       │  Cross-Encoder      │
-                       │  Reranker (opt.)    │
-                       └──────────┬──────────┘
-                                  │
-                                  ▼
-                       ┌─────────────────────┐
-                       │  Search CLI         │
-                       └─────────────────────┘
-```
+
+---
+
+## Key Results
+
+Evaluated retrieval performance against a 25-query benchmark covering single-paper, multi-paper, and methodology questions:
+
+| Method | MRR | Recall@5 | Recall@10 | Hit@1 | Latency |
+|---|---|---|---|---|---|
+| Dense only | 0.840 | 0.887 | 0.900 | 0.760 | 455 ms |
+| **Hybrid (BM25 + Dense + RRF)** | **0.893** | **0.900** | **1.000** | **0.840** | 598 ms |
+| Hybrid + Reranked | 0.847 | 0.879 | 1.000 | 0.760 | 2704 ms |
+
+**Hybrid retrieval wins +6.3% MRR and +10.5% Hit@1 over dense-only baseline.**
+
+The cross-encoder reranker degraded performance due to domain mismatch (trained on MS-MARCO, tested on academic prose).
+
+---
+
 ## Tech Stack
 
-**Languages:** Python 3.12
-
-**LLM & Embeddings:**
-- Groq (Llama 3.3 70B, Llama 3.1 8B) — inference
-- BGE-small-en-v1.5 — local embeddings via `sentence-transformers`
-- Cross-encoder ms-marco-MiniLM (planned) — re-ranking
-
-**Data & Storage:**
-- Qdrant Cloud — vector database
-- Neo4j AuraDB (planned) — knowledge graph
-- Neon Postgres (planned) — relational data
-- Upstash Redis (planned) — caching
-
-**Observability:**
-- Langfuse Cloud — LLM tracing and evaluation
-
-**Tooling:**
-- `pypdf` — PDF extraction
-- `tiktoken` — token counting
-- `pydantic-settings` — type-safe configuration
-- `tqdm` — progress visualization
-
-## Deployment
-
-- Backend is served by Gunicorn + Uvicorn worker using `Procfile`.
-- Configure `ENVIRONMENT=production`, `BACKEND_CORS_ORIGINS`, `BACKEND_TRUSTED_HOSTS`, `LOG_LEVEL`, `FORCE_HTTPS`, and `ENABLE_GZIP` in `.env` for deployed environments.
-- Frontend uses `NEXT_PUBLIC_API_BASE` to point to the backend URL.
-- Use `scholarmind-ui/.env.example` and root `.env.example` as templates.
-
-## Rendering the Full Stack on Render
-
-The repository includes a `render.yaml` manifest with both backend and frontend services.
-This makes it easier to deploy the full app in a monorepo.
-
-### Backend service
-
-- Service name: `scholarmind-backend`
-- Runtime: Python
-- Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn -k uvicorn.workers.UvicornWorker backend.app.api.main:app --bind 0.0.0.0:$PORT --workers 1 --log-level info`
-- Health check path: `/health`
-
-### Frontend service
-
-- Service name: `scholarmind-frontend`
-- Runtime: Node
-- Root directory: `scholarmind-ui`
-- Build command: `npm install && npm run build`
-- Start command: `npm run start`
-- Health check path: `/`
-
-### Shared Render environment configuration
-
-On Render, configure the following environment variables for the backend service:
-
-- `ENVIRONMENT=production`
-- `BACKEND_CORS_ORIGINS=https://your-frontend-domain.com`
-- `BACKEND_TRUSTED_HOSTS=your-backend-service.onrender.com`
-- `LOG_LEVEL=info`
-- `FORCE_HTTPS=true`
-- `ENABLE_GZIP=true`
-- `GROQ_API_KEY`
-- `HUGGINGFACE_API_KEY` (optional)
-- `QDRANT_URL`
-- `QDRANT_API_KEY`
-- `NEO4J_URI`
-- `NEO4J_USER`
-- `NEO4J_PASSWORD`
-- `DATABASE_URL`
-- `REDIS_URL`
-- `REDIS_TOKEN`
-- `LANGFUSE_PUBLIC_KEY`
-- `LANGFUSE_SECRET_KEY`
-- `LANGFUSE_HOST` (optional)
-
-For the frontend service, configure:
-
-- `NEXT_PUBLIC_API_BASE=https://<your-backend-service>.onrender.com`
-
-### Deploy checklist
-
-- `runtime.txt` is set to `python-3.12`
-- `Procfile` exists at the repo root for the backend service
-- `render.yaml` is present at the repo root
-- Backend `/health` returns `200`
-- Frontend starts successfully with `npm run start`
-
-### Local development
-
-- Copy `.env.example` to `.env`
-- Set `ENVIRONMENT=development`
-- Set `BACKEND_CORS_ORIGINS=http://localhost:3000`
-- Run locally with:
-  `uvicorn backend.app.api.main:app --host 0.0.0.0 --port 8000 --reload`
-
-- In another terminal, run frontend locally from `scholarmind-ui`:
-  `npm install`
-  `npm run dev`
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 16, TypeScript, Tailwind CSS |
+| **Backend** | FastAPI, Pydantic v2, async/await |
+| **Agent** | LangGraph (state machine), Groq (Llama 3.3 70B planner & generator) |
+| **Embeddings** | BGE-small-en-v1.5 (local CPU, 384-dim) |
+| **Vector DB** | Qdrant Cloud |
+| **Knowledge Graph** | Neo4j AuraDB |
+| **Sparse Retrieval** | rank_bm25 |
+| **Reranker** | cross-encoder/ms-marco-MiniLM-L-6-v2 |
+| **Observability** | Langfuse |
+| **Hosting** | Vercel (frontend), Railway (backend) |
 
 ---
 
-## Project Structure
+## Features
+
+### Hybrid Retrieval
+Combines BM25 (sparse) and dense embeddings via Reciprocal Rank Fusion. Captures both exact keyword matches (paper titles, technical terms) and semantic similarity.
+
+### LangGraph Agent
+Multi-step state machine: planner → tool execution → synthesis. The planner LLM picks one of 4 tools based on query intent, with JSON-structured output for reliable routing.
+
+### Knowledge Graph
+LLM-extracted entities (methods, concepts, authors, citations) stored in Neo4j. Enables relationship queries like *"Find papers similar to X by shared methods"* that vector search struggles with.
+
+### Citation-Grounded Generation
+Every claim in the answer is tagged with inline `[1][2]` citations referencing the retrieved chunks. The generator refuses to answer when retrieval returns no relevant chunks.
+
+### Contextual Retrieval
+Implemented Anthropic's contextual retrieval technique — prepending paper-level context to each chunk before embedding. Improves recall on chunks that lack standalone context.
+
+### Production Observability
+Every LLM call, retrieval, and tool execution is traced in Langfuse with latency, token usage, and inputs/outputs.
 
 ---
 
-## Getting Started
+## Repository Structure
+
+scholarmind/
+├── backend/
+│   ├── app/
+│   │   ├── core/             # config, observability
+│   │   ├── ingestion/        # PDF extraction, chunking, embeddings, entity extraction
+│   │   ├── retrieval/        # BM25, Qdrant, hybrid search, reranker, graph queries
+│   │   ├── agents/           # LangGraph agent, planner, tools, generator
+│   │   └── api/              # FastAPI app, endpoints, schemas
+├── scholarmind-ui/           # Next.js frontend
+│   ├── app/                  # pages, layout
+│   └── lib/                  # API client
+├── experiments/              # Evaluation framework + benchmark
+├── data/
+│   └── papers_processed/     # extracted chunks, BM25 index, entities
+├── docs/                     # design notes
+├── requirements.txt
+├── Procfile
+└── runtime.txt
+
+---
+
+## Running Locally
 
 ### Prerequisites
-
 - Python 3.12+
-- Free-tier accounts on: Groq, Qdrant Cloud, Neo4j AuraDB, Neon, Upstash, Langfuse, Hugging Face
+- Node.js 18+
+- A Groq API key (free)
+- A Qdrant Cloud account (free)
+- A Neo4j AuraDB instance (free)
+- A Langfuse account (free, optional)
 
-### Installation
-
+### 1. Clone and install backend
 ```bash
-# Clone
 git clone https://github.com/sahaana1517/scholarmind.git
 cd scholarmind
 
-# Create virtual environment
 python -m venv venv
-.\venv\Scripts\activate   # Windows
-source venv/bin/activate  # macOS/Linux
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
 
-# Install dependencies
-pip install -r requirements.txt    # (planned — will add)
-
-# Configure environment
-cp .env.example .env
-# Fill in your API keys in .env
+pip install -r requirements.txt
 ```
 
-### Run the Pipeline
+### 2. Create `.env` at project root
+```env
+GROQ_API_KEY=gsk_...
+QDRANT_URL=https://....cloud.qdrant.io
+QDRANT_API_KEY=...
+NEO4J_URI=neo4j+ssc://....databases.neo4j.io
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=...
+LANGFUSE_PUBLIC_KEY=pk-lf-...
+LANGFUSE_SECRET_KEY=sk-lf-...
+LANGFUSE_HOST=https://cloud.langfuse.com
+```
 
+### 3. Ingest data (one-time, ~10 minutes)
 ```bash
-# 1. Download papers from arXiv
 python -m backend.app.ingestion.download_papers
-
-# 2. Extract text from PDFs
 python -m backend.app.ingestion.pdf_extractor
-
-# 3. Chunk extracted text
 python -m backend.app.ingestion.chunker
-
-# 4. Generate embeddings
 python -m backend.app.ingestion.embedder
-
-# 5. Index in Qdrant (dense vectors)
 python -m backend.app.retrieval.indexer
-
-# 6. Build BM25 sparse index
 python -m backend.app.retrieval.bm25_index
-
-# 7. Try semantic search (dense only)
-python -m backend.app.retrieval.search
-
-# 8. Try hybrid search (dense + BM25 + RRF)
-python -m backend.app.retrieval.hybrid_search
+python -m backend.app.ingestion.entity_extractor
+python -m backend.app.ingestion.graph_loader
 ```
 
----
+### 4. Start the backend
+```bash
+uvicorn backend.app.api.main:app --reload --port 8000
+```
 
-## Sample Query
-🔍 Query: What is retrieval augmented generation?
---- Result 1 | Score: 0.8503 ---
-📄 Paper: 2406.13249 | Page: 1
-💬 R2AG: Incorporating Retrieval Information into Retrieval
-Augmented Generation...
---- Result 2 | Score: 0.8182 ---
-📄 Paper: 2502.01113 | Page: 12
-💬 Retrieval-augmented generation for large language models:
-A survey...
-⏱  Retrieved in 920ms
----
+API docs at http://localhost:8000/docs
 
-## Evaluation Results
+### 5. Start the frontend (separate terminal)
+```bash
+cd scholarmind-ui
+npm install
+npm run dev
+```
 
-A 25-query benchmark with 23 paraphrased single-paper queries and 4 cross-paper synthesis queries:
-
-| Method | MRR | Recall@5 | Recall@10 | Hit@1 | Avg Latency |
-|---|---|---|---|---|---|
-| Dense only (BGE-small) | 0.840 | 0.887 | 0.900 | 0.760 | 455ms |
-| **Hybrid (Dense + BM25 + RRF)** | **0.893** | **0.900** | **1.000** | **0.840** | 598ms |
-| Hybrid + Cross-encoder rerank | 0.847 | 0.879 | 1.000 | 0.760 | 2704ms |
-
-**Hybrid retrieval wins on this corpus** — +6.3% MRR and +10.5% Hit@1 over dense alone, with full recall@10 and only 30% latency overhead.
-
-**Reranking slightly degraded MRR.** Traced to a domain mismatch: the MS-MARCO-trained reranker overweights surface keyword overlap on academic prose. Documented as a finding rather than a feature — see [eval_results_summary.md](experiments/eval_results_summary.md) for details.
-
-Reproduce with: `python -m experiments.evaluate_retrieval`
+UI at http://localhost:3000
 
 ---
 
-## Engineering Notes
+## Evaluation Framework
 
-**Why local CPU embeddings?**
-BGE-small-en-v1.5 produces 384-dim embeddings competitive with OpenAI's `text-embedding-3-small` while running entirely on CPU at ~5 chunks/sec. This eliminates per-token costs and works behind corporate firewalls.
+The `experiments/` directory contains a 25-query benchmark spanning:
+- Single-paper questions (e.g., "What is R²AG?")
+- Multi-paper questions (e.g., "Compare GFM-RAG and R²AG")
+- Methodology questions (e.g., "How does Curator's index work?")
 
-**Why normalized cosine similarity?**
-Embeddings are L2-normalized at generation time, which means cosine similarity reduces to a dot product — faster computation, cleaner geometry for retrieval ranking.
+Run the evaluation:
+```bash
+python -m experiments.evaluate_retrieval
+```
 
-**Why hybrid retrieval (planned)?**
-Dense retrieval captures semantic meaning but can miss exact-term matches — acronyms, paper IDs, rare technical jargon. BM25 catches those. The two are combined using Reciprocal Rank Fusion (Cormack et al., 2009), which sidesteps the problem of incompatible score scales (cosine ranges 0-1, BM25 ranges 0-50+) by fusing on rank position rather than absolute scores. In practice this surfaces chunks that one method alone would have buried, demonstrably improving recall on technical queries.
-
-**Why Neo4j for GraphRAG?**
-Some research questions are inherently relational — "papers that cite X and also propose Y." Pure vector search can't express graph traversal; a knowledge graph layer can.
+Metrics computed: MRR, Recall@5, Recall@10, Hit@1, Hit@3, mean latency.
 
 ---
 
-## Roadmap
+## Known Limitations
 
-- [ ] Hybrid retrieval (BM25 + dense + RRF)
-- [ ] Cross-encoder re-ranking
-- [ ] Contextual retrieval (Anthropic technique)
-- [ ] Evaluation framework (RAGAS metrics, golden set)
-- [ ] LangGraph agent with multi-tool routing
-- [ ] Neo4j knowledge graph + GraphRAG queries
-- [ ] FastAPI backend with streaming
-- [ ] Next.js frontend
-- [ ] Production deployment (Railway + Vercel)
-- [ ] Observability dashboard (Langfuse + Grafana)
+- **Graph data sparsity:** The entity extractor was precise rather than exhaustive — methods like BM25 don't appear in the graph because papers reference them as baselines rather than as their own techniques.
+- **Reranker domain mismatch:** The cross-encoder is trained on MS-MARCO (web Q&A) and degrades performance on academic prose. A domain-specific reranker would help.
+- **Concept normalization:** "Retrieval-Augmented Generation" and "Retrieval-augmented generation" don't perfectly merge in the graph due to punctuation differences.
+- **Cold-start latency:** The first request after the backend has been idle takes ~30 seconds while the embedding model loads.
+
+---
+
+## What I Learned
+
+- **Agentic systems are mostly about planning, not retrieval.** Getting the planner LLM to choose the right tool reliably was harder than building the tools themselves.
+- **Hybrid retrieval > rerankers (for academic prose).** A simple BM25+dense RRF combination beat a fine-tuned cross-encoder reranker in our corpus.
+- **Knowledge graphs complement vector search.** Relationship questions ("find similar by shared methods") are 10-20x faster on the graph than via embedding lookup.
+- **Prompt engineering bugs surface in surprising ways.** Our entity extractor was leaking example concepts into outputs until we redesigned the prompt with category-only guidance.
+- **Observability matters from day one.** Langfuse traces helped diagnose multiple silent failures (prompt leak, retriever drift, planner misrouting).
 
 ---
 
@@ -327,4 +246,4 @@ MIT
 
 ---
 
-*Built as an independent project to explore production-grade RAG architectures.*
+Built by [Sahaana](https://github.com/sahaana1517).
