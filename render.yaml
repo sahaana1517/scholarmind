@@ -11,9 +11,9 @@ services:
       - key: ENVIRONMENT
         value: production
       - key: BACKEND_CORS_ORIGINS
-        value: https://your-frontend-domain.com
+        value: https://scholarmind-ui.vercel.app,https://scholarmind.vercel.app
       - key: BACKEND_TRUSTED_HOSTS
-        value: your-backend-service.onrender.com
+        value: scholarmind-9bld.onrender.com
       - key: LOG_LEVEL
         value: info
       - key: FORCE_HTTPS
@@ -31,5 +31,7 @@ services:
     startCommand: npm run start
     healthCheckPath: /
     envVars:
-      - key: NEXT_PUBLIC_API_BASE
-        value: https://your-backend-service.onrender.com
+      - key: NEXT_PUBLIC_API_URL
+        value: https://scholarmind-9bld.onrender.com
+      - key: NODE_ENV
+        value: production

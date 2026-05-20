@@ -1,6 +1,9 @@
 // API client for the ScholarMind FastAPI backend.
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ||
+  process.env.NEXT_PUBLIC_API_BASE ||
+  "https://scholarmind-9bld.onrender.com";
 
 export type Source = {
   index: number;
@@ -40,8 +43,42 @@ export type Info = {
   tools_available: string[];
 };
 
+const RENDER_COLD_START_TIMEOUT_MS = 60_000; // Render free tier can take ~50s to wake
+
+async function fetchWithRetry(
+  url: string,
+  options: RequestInit,
+  maxAttempts = 3,
+): Promise<Response> {
+  let lastError: Error | null = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(
+        () => controller.abort(),
+        RENDER_COLD_START_TIMEOUT_MS,
+      );
+      const res = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(timeoutId);
+      return res;
+    } catch (err) {
+      lastError = err instanceof Error ? err : new Error(String(err));
+      const isAbort =
+        lastError.name === "AbortError" ||
+        lastError.message.includes("aborted");
+      // Only retry on network / timeout errors, not on HTTP error responses
+      if (!isAbort && !lastError.message.includes("fetch")) break;
+      if (attempt < maxAttempts) {
+        // Exponential back-off: 2s, 4s
+        await new Promise((r) => setTimeout(r, 2 ** attempt * 1000));
+      }
+    }
+  }
+  throw lastError ?? new Error("Request failed");
+}
+
 async function postJSON<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetchWithRetry(`${API_BASE}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -52,7 +89,9 @@ async function postJSON<T>(path: string, body: unknown): Promise<T> {
     try {
       const errBody = await res.json();
       detail = errBody.detail || JSON.stringify(errBody);
-    } catch {}
+    } catch {
+      // ignore json parse errors on error responses
+    }
     throw new Error(`API ${res.status}: ${detail}`);
   }
 
@@ -60,7 +99,7 @@ async function postJSON<T>(path: string, body: unknown): Promise<T> {
 }
 
 async function getJSON<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`);
+  const res = await fetchWithRetry(`${API_BASE}${path}`, { method: "GET" });
   if (!res.ok) {
     throw new Error(`API ${res.status}: ${res.statusText}`);
   }
