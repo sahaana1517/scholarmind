@@ -28,7 +28,7 @@ Example queries it handles well:
 
 ## Architecture
 
-┌──────────────────┐
+            ┌──────────────────┐
             │   Next.js UI     │   (Vercel)
             └────────┬─────────┘
                      │  HTTPS
