@@ -28,6 +28,7 @@ Example queries it handles well:
 
 ## Architecture
 
+```
             ┌──────────────────┐
             │   Next.js UI     │   (Vercel)
             └────────┬─────────┘
@@ -54,74 +55,15 @@ Example queries it handles well:
 search_papers   compare_papers   graph_query
 methodology     (parallel topic   (Neo4j Cypher)
 extraction       retrieval)
-│                │                │
-▼                ▼                ▼
+    │                │                │
+    ▼                ▼                ▼
 [Qdrant + BM25]                    [Neo4j]
 hybrid retrieval              knowledge graph
 30 papers                     30 papers
 1103 chunks                   105 methods
 80 concepts
 319 relationships
-
-
----
-
-## Key Results
-
-Evaluated retrieval performance against a 25-query benchmark covering single-paper, multi-paper, and methodology questions:
-
-| Method                          | MRR       | Recall@5  | Recall@10 | Hit@1     | Latency  |
-| ------------------------------- | --------- | --------- | --------- | --------- | -------- |
-| Dense only                      | 0.840     | 0.887     | 0.900     | 0.760     | 455 ms   |
-| **Hybrid (BM25 + Dense + RRF)** | **0.893** | **0.900** | **1.000** | **0.840** | 598 ms   |
-| Hybrid + Reranked               | 0.847     | 0.879     | 1.000     | 0.760     | 2704 ms  |
-
-**Hybrid retrieval wins +6.3% MRR and +10.5% Hit@1 over dense-only baseline.**
-
-The cross-encoder reranker degraded performance due to domain mismatch (trained on MS-MARCO, tested on academic prose).
-
----
-
-## Tech Stack
-
-| Layer                | Technology                                                          |
-| -------------------- | ------------------------------------------------------------------- |
-| **Frontend**         | Next.js 16, TypeScript, Tailwind CSS                                |
-| **Backend**          | FastAPI, Pydantic v2, async/await                                   |
-| **Agent**            | LangGraph (state machine), Groq (Llama 3.3 70B planner & generator) |
-| **Embeddings**       | BGE-small-en-v1.5 (local CPU, 384-dim)                              |
-| **Vector DB**        | Qdrant Cloud                                                        |
-| **Knowledge Graph**  | Neo4j AuraDB                                                        |
-| **Sparse Retrieval** | rank_bm25                                                           |
-| **Reranker**         | cross-encoder/ms-marco-MiniLM-L-6-v2                                |
-| **Observability**    | Langfuse                                                            |
-| **Hosting**          | Vercel (frontend), Railway (backend)                                |
-
----
-
-## Features
-
-### Hybrid Retrieval
-Combines BM25 (sparse) and dense embeddings via Reciprocal Rank Fusion. Captures both exact keyword matches (paper titles, technical terms) and semantic similarity.
-
-### LangGraph Agent
-Multi-step state machine: planner → tool execution → synthesis. The planner LLM picks one of 4 tools based on query intent, with JSON-structured output for reliable routing.
-
-### Knowledge Graph
-LLM-extracted entities (methods, concepts, authors, citations) stored in Neo4j. Enables relationship queries like *"Find papers similar to X by shared methods"* that vector search struggles with.
-
-### Citation-Grounded Generation
-Every claim in the answer is tagged with inline `[1][2]` citations referencing the retrieved chunks. The generator refuses to answer when retrieval returns no relevant chunks.
-
-### Contextual Retrieval
-Implemented Anthropic's contextual retrieval technique — prepending paper-level context to each chunk before embedding. Improves recall on chunks that lack standalone context.
-
-### Production Observability
-Every LLM call, retrieval, and tool execution is traced in Langfuse with latency, token usage, and inputs/outputs.
-
----
-
-## Repository Structure
+```
 
 ---
 
@@ -182,6 +124,7 @@ Every LLM call, retrieval, and tool execution is traced in Langfuse with latency
 
 ## Repository Structure
 
+```
 scholarmind/
 ├── backend/
 │   ├── app/
@@ -200,6 +143,7 @@ scholarmind/
 ├── requirements.txt
 ├── Procfile
 └── runtime.txt
+```
 
 ---
 
