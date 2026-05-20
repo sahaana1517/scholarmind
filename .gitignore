@@ -47,3 +47,5 @@ test_*.py
 
 # Notebook checkpoints
 .ipynb_checkpoints/
+# Claude AI workspace
+.claude/
