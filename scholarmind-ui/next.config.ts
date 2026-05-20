@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_API_URL:
       process.env.NEXT_PUBLIC_API_URL ||
-      "https://scholarmind-9bld.onrender.com",
+      "https://web-production-442bd.up.railway.app",
   },
 
   // Strict mode catches subtle React bugs early

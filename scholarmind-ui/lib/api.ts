@@ -3,7 +3,7 @@
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL ||
   process.env.NEXT_PUBLIC_API_BASE ||
-  "https://scholarmind-9bld.onrender.com";
+  "https://web-production-442bd.up.railway.app";
 
 export type Source = {
   index: number;

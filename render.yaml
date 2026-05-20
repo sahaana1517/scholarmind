@@ -32,6 +32,6 @@ services:
     healthCheckPath: /
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        value: https://scholarmind-9bld.onrender.com
+        value: https://web-production-442bd.up.railway.app
       - key: NODE_ENV
         value: production
